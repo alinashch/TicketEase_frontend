@@ -6,9 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ticketease.DataClasses.Person.Buyer
-import com.example.ticketease.DataClasses.Person.BuyerRequest
-import com.example.ticketease.DataClasses.Person.Cities
+import com.example.ticketease.DataClasses.Person.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 
 import kotlinx.coroutines.channels.Channel
@@ -21,19 +19,17 @@ class ViewModelAvtBuyer @Inject constructor(
 ) : ViewModel() {
     var flag : Boolean = false
     var state by mutableStateOf(BuyerRequest())
-
     private val resultChannel = Channel<AvtResult<Unit>>()
-    val avtorizeResults = resultChannel.receiveAsFlow()
+    var avtorizeResults = resultChannel.receiveAsFlow()
 
 
-    fun register(regist : AvtStateTextFields){
+      fun avtorize(regist : AvtStateTextFields) {
         when(regist){
             is AvtStateTextFields.Login -> state = state.copy(login = regist.value)
             is AvtStateTextFields.Password -> state = state.copy(password = regist.value)
             is AvtStateTextFields.AvtBuyer ->{
                 Avt()
             }
-
         }
 
     }
@@ -43,7 +39,6 @@ class ViewModelAvtBuyer @Inject constructor(
             val result = repository.Avtorize(state)
             flag = true
             resultChannel.send(result)
-
         }
     }
 

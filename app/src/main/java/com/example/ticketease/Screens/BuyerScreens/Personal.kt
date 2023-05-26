@@ -1,6 +1,5 @@
 package com.example.ticketease.Screens.EnterAppByer
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -19,11 +18,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.ticketease.DataClasses.Person.Buyer
+import com.example.ticketease.MVVM.Person.Buyer.Avtorize.token
+import com.example.ticketease.MVVM.Person.Buyer.Personal.PersonalStateTextFields
+import com.example.ticketease.MVVM.Person.Buyer.Personal.ViewModelPersonal
 import com.example.ticketease.R
 @Composable
-fun Personal(navController: NavHostController) {
+fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hiltViewModel()) {
+   viewModel.personal(PersonalStateTextFields.PersonalBuyer)
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -93,33 +98,6 @@ fun Personal(navController: NavHostController) {
                             }
                         }
 
-                        Button(
-                            onClick = {  },
-                            modifier = Modifier
-                                .padding(top = 25.dp)
-                                .height(95.dp)
-                                .width(450.dp),
-                            colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(
-                                R.color.find)),
-
-                            )
-                        {
-                            Image(
-                                painterResource(id = R.drawable.arrow),
-                                contentDescription = "image",
-                                modifier = Modifier
-                                    .size(29.dp, 29.dp)
-                                    .offset(245.dp, 0.dp),
-                                contentScale = ContentScale.Crop
-                            )
-
-                            Column(modifier = Modifier
-                                .padding(10.dp)
-                                .offset(-100.dp, 0.dp)) {
-                                Text("Мои билеты", fontSize = 20.sp, color = Color.Black)
-
-                            }
-                        }
                         Box(modifier = Modifier.padding(20.dp)) {
                             Spacer(modifier = Modifier.height(60.dp))
                             Column() {

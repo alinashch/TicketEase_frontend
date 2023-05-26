@@ -15,6 +15,7 @@ import com.example.ticketease.Screens.EnterAppByer.AvtorizeByer
 import com.example.ticketease.Screens.EnterAppByer.Catalog
 import com.example.ticketease.Screens.EnterAppByer.Personal
 import com.example.ticketease.Screens.EnterAppByer.RegisterBuyer
+import com.example.ticketease.Screens.Errors.ErrorNoLogin
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,6 +42,7 @@ fun ScreenView(){
             AvtorizeByer(navController)
         }
         composable("Personal"){ Personal(navController) }
+        composable("ErrorNoLogin"){ ErrorNoLogin(navController) }
 
     }
 }

@@ -15,6 +15,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.ticketease.DataClasses.Person.Buyer
 import com.example.ticketease.R
 
 @Composable
@@ -47,19 +48,7 @@ fun Catalog(navController: NavHostController) {
                             .offset(y = -9.dp, x = 33.dp),textStyle = TextStyle(fontSize = 12.sp),onValueChange = {}
                     )
 
-                    Row() {
-                        Image(
-                            painterResource(id = R.drawable.filter_v7wlx),
-                            contentDescription = "image",
-                            modifier = Modifier
-                                .size(20.dp, 20.dp)
-                                .clickable() {}
-                                .offset(y = 35.dp, x = 5.dp),
-                            contentScale = ContentScale.Crop
-                        )
-                        Text(text = "Уточнение и сортировка",  modifier = Modifier.offset(y = 35.dp, x = 15.dp), fontSize = 15.sp)
 
-                    }
                     Row() {
                         Image(
                             painterResource(id = R.drawable.search_interface_symbol),

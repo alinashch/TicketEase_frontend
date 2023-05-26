@@ -5,8 +5,11 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.example.ticketease.MVVM.Person.Buyer.Avtorize.AvtRepository
 import com.example.ticketease.MVVM.Person.Buyer.Avtorize.AvtRepositoryImpl
+import com.example.ticketease.MVVM.Person.Buyer.Personal.PersonalRepository
 import com.example.ticketease.MVVM.Person.Buyer.Register.RegisterRepository
 import com.example.ticketease.MVVM.Person.Buyer.Register.RegisterRepositoryImpl
+import com.example.ticketease.MVVM.Person.Buyer.Personal.PersonalRepositoryImpl
+
 import com.example.ticketease.MVVM.url
 import dagger.Module
 import dagger.Provides
@@ -46,6 +49,13 @@ fun provideSharedPref(app : Application) : SharedPreferences{
     @Singleton
     fun provideAvtRepository(api : BuyerRetrofitAPI,prefs : SharedPreferences) : AvtRepository {
         return AvtRepositoryImpl(api, prefs)
+    }
+
+
+    @Provides
+    @Singleton
+    fun providePersonalRepository(api : BuyerRetrofitAPI,prefs : SharedPreferences) : PersonalRepository {
+        return PersonalRepositoryImpl(api, prefs)
     }
 }
 

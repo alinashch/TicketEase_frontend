@@ -26,9 +26,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.example.ticketease.DataClasses.Person.BuyerWithoutPswd
 import com.example.ticketease.MVVM.Person.Buyer.Avtorize.AvtResult
 import com.example.ticketease.MVVM.Person.Buyer.Avtorize.AvtStateTextFields
 import com.example.ticketease.MVVM.Person.Buyer.Avtorize.ViewModelAvtBuyer
+import com.example.ticketease.MVVM.Person.Buyer.Avtorize.token
+import com.example.ticketease.MVVM.Person.Buyer.Personal.PersonalStateTextFields
+import com.example.ticketease.MVVM.Person.Buyer.Personal.ViewModelPersonal
 import com.example.ticketease.MVVM.Person.Buyer.Register.RegistResult
 import com.example.ticketease.MVVM.Person.Buyer.Register.RegisterStateTextFields
 import com.example.ticketease.R
@@ -47,18 +51,11 @@ fun AvtorizeByer(navController: NavHostController, viewModel: ViewModelAvtBuyer 
                     navController.navigate("Catalog")
                 }
                 is AvtResult.IncorrectPassword -> {
-                    Toast.makeText(
-                        context,
-                        "login is incorrect",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    navController.navigate("ErrorNoLogin")
+
                 }
                 is AvtResult.UnknownLogin -> {
-                    Toast.makeText(
-                        context,
-                        "An unknown login",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    navController.navigate("ErrorNoLogin")
                 }
             }
         }
@@ -93,7 +90,7 @@ fun AvtorizeByer(navController: NavHostController, viewModel: ViewModelAvtBuyer 
 
                     TextField(
                         value = state.login,
-                        onValueChange = {viewModel.register(AvtStateTextFields.Login(it))},
+                        onValueChange = {viewModel.avtorize(AvtStateTextFields.Login(it))},
                         placeholder = { Text(text = "Логин") },
                         modifier = Modifier
                             .padding(5.dp)
@@ -102,7 +99,7 @@ fun AvtorizeByer(navController: NavHostController, viewModel: ViewModelAvtBuyer 
                         )
                     TextField(
                         value = state.password,
-                        onValueChange = { viewModel.register(AvtStateTextFields.Password(it))},
+                        onValueChange = { viewModel.avtorize(AvtStateTextFields.Password(it))},
                         placeholder = { Text(text = "Пароль") },
                         modifier = Modifier
                             .padding(5.dp)
@@ -129,11 +126,16 @@ fun AvtorizeByer(navController: NavHostController, viewModel: ViewModelAvtBuyer 
 
                             Button(
                                 onClick = {
-                                    if (!viewModel.flag) {
-                                        viewModel.register(AvtStateTextFields.AvtBuyer)
-                                        navController.navigate("Catalog")
+                                    if(state.login!="" && state.password!="") {
+                                        if (!viewModel.flag) {
+                                                viewModel.avtorize(AvtStateTextFields.AvtBuyer)
+                                                navController.navigate("Catalog")
+                                            viewModel.flag = false
+                                        } else {
+                                            navController.navigate("ErrorNoLogin")
+                                        }
                                     }else{
-                                        //TODO
+                                        navController.navigate("ErrorNoLogin")
                                     }
                                 },
                                 modifier = Modifier

@@ -167,16 +167,7 @@ fun RegisterBuyer(navController: NavHostController, viewModel: ViewModelRegistBu
                     ) {
                     Text(text = "Регистрация", modifier = Modifier.padding(8.dp))
                 }
-                Box() {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Image(
-                            painterResource(id = R.drawable._jltfum4_sx1na_transformed),
-                            contentDescription = "image",
-                            modifier = Modifier.size(60.dp, 60.dp),
-                            contentScale = ContentScale.Crop
-                        )
-                    }
-                }
+
             }
         }
     }
