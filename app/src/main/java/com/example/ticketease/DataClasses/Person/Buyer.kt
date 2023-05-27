@@ -39,15 +39,15 @@ data class Buyer(
 @Serializable
 data class BuyerWithoutPswd(
     @JsonProperty("name")
-    val name : String="",
+    var name : String="",
     @JsonProperty("surname")
-    val surname: String="",
+    var surname: String="",
     @JsonProperty("email")
-    val email: String="",
+    var email: String="",
     @JsonProperty("mobile")
-    val mobile: String? = null,
+    var mobile: String? = null,
     @JsonProperty("token")
-    val token: String=""
+    var token: String=""
     )
 
 @Serializable

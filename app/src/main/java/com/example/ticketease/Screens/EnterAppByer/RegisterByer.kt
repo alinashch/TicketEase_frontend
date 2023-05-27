@@ -36,6 +36,7 @@ fun RegisterBuyer(navController: NavHostController, viewModel: ViewModelRegistBu
             res ->
             when (res){
                 is RegistResult.Registered -> {
+
                     navController.navigate("Catalog")
                 }
                 is RegistResult.Unregistered -> {

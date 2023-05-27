@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ticketease.DataClasses.Person.Buyer
 import com.example.ticketease.DataClasses.Person.Cities
-import com.example.ticketease.DataClasses.Person.toJsonBody
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow

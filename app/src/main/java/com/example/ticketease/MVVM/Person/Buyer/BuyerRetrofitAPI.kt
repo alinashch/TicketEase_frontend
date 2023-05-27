@@ -17,6 +17,6 @@ interface BuyerRetrofitAPI {
     suspend fun Avtorize(@Body dataModel: BuyerRequest?): BuyerResponse
 
     @POST("/buyers/token")
-     fun buyerByToken(@Body dataModel: BuyerResponse?):  BuyerWithoutPswd
+   suspend  fun buyerByToken(@Body dataModel: BuyerResponse?):  BuyerWithoutPswd
 
 }

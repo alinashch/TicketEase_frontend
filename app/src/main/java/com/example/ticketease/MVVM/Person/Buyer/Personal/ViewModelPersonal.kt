@@ -32,21 +32,26 @@ class ViewModelPersonal @Inject constructor(
     val personalResults = resultChannel.receiveAsFlow()
 
 
-    fun personal(personal : PersonalStateTextFields){
+     fun personal(personal : PersonalStateTextFields): BuyerWithoutPswd {
         when(personal){
             is PersonalStateTextFields.PersonalBuyer ->{
                 state = state.copy(token =prefs.getString("token",token)!!)
-                pers()
+               return pers()
             }
         }
     }
 
-    private fun pers(){
-        viewModelScope.launch {
-            flag = true
-            val result = repository.getByToken(state)
-            resultChannel.send(result)
-        }
+     fun pers(): BuyerWithoutPswd {
+         var result= BuyerWithoutPswd("всвы", "высвы", "высвы", "", "")
+         viewModelScope.launch {
+
+             flag = true
+              result = repository.getByToken(state)
+             //resultChannel.send(result)
+         }
+         return result
+
+     }
     }
 
-}
+

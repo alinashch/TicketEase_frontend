@@ -1,5 +1,6 @@
 package com.example.ticketease.Screens.EnterAppByer
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -9,10 +10,12 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -22,12 +25,15 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.ticketease.DataClasses.Person.Buyer
 import com.example.ticketease.MVVM.Person.Buyer.Avtorize.token
+import com.example.ticketease.MVVM.Person.Buyer.Personal.PersonalResult
 import com.example.ticketease.MVVM.Person.Buyer.Personal.PersonalStateTextFields
 import com.example.ticketease.MVVM.Person.Buyer.Personal.ViewModelPersonal
+import com.example.ticketease.MVVM.Person.Buyer.Register.RegistResult
 import com.example.ticketease.R
 @Composable
 fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hiltViewModel()) {
-   viewModel.personal(PersonalStateTextFields.PersonalBuyer)
+
+ var b= viewModel.personal(PersonalStateTextFields.PersonalBuyer)
 
     Box(
         modifier = Modifier
@@ -84,12 +90,12 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                                         modifier = Modifier
                                             .offset(-80.dp, -20.dp)
                                     ) {
-                                        Text("p.name" + " ", fontSize = 20.sp, color = Color.Black)
-                                        Text("p.surname", fontSize = 20.sp, color = Color.Black)
+                                        Text(b.name + " ", fontSize = 20.sp, color = Color.Black)
+                                        Text(b.surname, fontSize = 20.sp, color = Color.Black)
 
                                     }
                                     Text(
-                                        "p.phone", fontSize = 20.sp, modifier = Modifier
+                                        b.mobile.toString(), fontSize = 20.sp, modifier = Modifier
                                             .offset(-80.dp, -20.dp), color = Color.Black
                                     )
 

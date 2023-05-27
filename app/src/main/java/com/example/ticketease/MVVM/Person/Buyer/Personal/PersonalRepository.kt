@@ -4,6 +4,6 @@ import com.example.ticketease.DataClasses.Person.BuyerResponse
 import com.example.ticketease.DataClasses.Person.BuyerWithoutPswd
 
 interface PersonalRepository {
-    suspend fun getByToken(buyer: BuyerResponse) : PersonalResult<Unit>
+    suspend fun getByToken(buyer: BuyerResponse) : BuyerWithoutPswd
 
 }
