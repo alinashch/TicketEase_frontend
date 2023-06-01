@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.ticketease.MVVM.Event.Catalog.ViewModelCatalog
+import com.example.ticketease.MVVM.Event.Ticket.ViewModelTicket
 import com.example.ticketease.MVVM.Person.Buyer.Avtorize.AvtResult
 import com.example.ticketease.MVVM.Person.Buyer.Personal.ViewModelPersonal
 import com.example.ticketease.R
@@ -25,6 +26,8 @@ import com.example.ticketease.R
 @Composable
  fun CatalogNAUser(navController: NavHostController ) {
     val viewModel: ViewModelCatalog = hiltViewModel()
+    val viewModelTicket: ViewModelTicket = hiltViewModel()
+
     Column() {
         Box(
 
@@ -34,26 +37,7 @@ import com.example.ticketease.R
                 .fillMaxWidth(), contentAlignment = Alignment.Center
         ) {
             Column() {
-                Box(
-                    modifier = Modifier
-                        .background(color = colorResource(R.color.find))
-                        .height(50.dp)
-                ) {
-                    Row() {
-                        Image(
-                            painterResource(id = R.drawable.search_interface_symbol),
-                            contentDescription = "image",
-                            modifier = Modifier.size(50.dp, 50.dp),
-                            contentScale = ContentScale.Crop
-                        )
-                        TextField(
-                            value = "Поиск событий",
-                            onValueChange = {},
-                            Modifier.padding(10.dp)
-                        )
-                    }
 
-                }
                 Box(modifier = Modifier.height(30.dp)) {
 
                 }
@@ -99,18 +83,19 @@ import com.example.ticketease.R
                         .verticalScroll(rememberScrollState())
                 ) {
                     val list = viewModel.catalog
+                    var i:Int=0
                     for (l in list){
-
+                        viewModelTicket.id= l.id!!
+                        val ticket=viewModelTicket.tickets
                         com.example.ticketease.Screens.EnterAppByer.ListItem(
-                            cost = l.name,
+                            cost = ticket[i].price.toString(),
                             location = l.nameGroup.toString(),
-                            date = l.genre.toString(),
-                            name = l.organizerId.toString(),
+                            date = l.placeTimeId.toString(),
+                            name = l.name,
                             R.drawable.vkz
                         )
+                        i++
                     }
-
-
                 }
 
                     Box(
