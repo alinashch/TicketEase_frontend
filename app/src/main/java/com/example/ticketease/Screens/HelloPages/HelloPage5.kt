@@ -67,6 +67,7 @@ fun HelloPage5(navController: NavHostController) {
                         selectedRole.value = Role.BUYER
                         isButtonPressed1.value = !isButtonPressed1.value
                         navController.navigate("HelloPage6")
+                        role=Role.BUYER
                               },
                     modifier = Modifier.height(50.dp).width(300.dp).offset(y = 270.dp, x = 0.dp),
                     shape = RoundedCornerShape(50),
@@ -88,6 +89,7 @@ fun HelloPage5(navController: NavHostController) {
                     onClick = {
                         selectedRole.value = Role.ORGANIZER
                         isButtonPressed2.value = !isButtonPressed2.value
+                        role=Role.ORGANIZER
                         navController.navigate("HelloPage6")
 
                     },

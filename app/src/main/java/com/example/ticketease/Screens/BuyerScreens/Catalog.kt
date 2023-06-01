@@ -36,46 +36,10 @@ import com.example.ticketease.R
 
             Column() {Spacer(modifier = Modifier.height(5.dp))
 
-                Box(
-                    modifier = Modifier
-                        .background(
-                            color = Color(0xFFE3CBFE),
-                            shape = RoundedCornerShape(topStart = 3.dp, topEnd = 3.dp, bottomStart = 3.dp, bottomEnd = 3.dp )
-                        )
-                        .offset(y = 10.dp, x = 0.dp)
-                        .height(45.dp)
-                        .width(370.dp),
-
-                    ) {
-                    TextField(
-                        value = "Поиск событий", modifier = Modifier
-                            .size(width = 320.dp, height = 45.dp) // Измененные размеры
-                            .offset(y = -9.dp, x = 33.dp),textStyle = TextStyle(fontSize = 12.sp),onValueChange = {}
-                    )
-
-
-                    Row() {
-                        Image(
-                            painterResource(id = R.drawable.search_interface_symbol),
-                            contentDescription = "image",
-                            modifier = Modifier
-                                .size(25.dp, 25.dp)
-                                .offset(y = -2.dp, x = 5.dp),
-                            contentScale = ContentScale.Crop
-                        )
-                    }
-
-                }
-                Box(modifier = Modifier.height(30.dp)){
-
-                }
 
             }
-
-
         }
         Column() {
-
 
             Box(
                 modifier = Modifier
@@ -97,7 +61,7 @@ import com.example.ticketease.R
                                 cost = l.name,
                                 location = l.nameGroup.toString(),
                                 date = l.genre.toString(),
-                                name = l.organizerId.toString(),
+                                name = l.name,
                                 R.drawable.vkz
                             )
                         }

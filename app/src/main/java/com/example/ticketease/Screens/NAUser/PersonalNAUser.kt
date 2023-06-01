@@ -23,6 +23,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.ticketease.MVVM.Person.NAUser.ViewModelNAUserPersonal
 import com.example.ticketease.R
+import com.example.ticketease.Screens.HelloPages.city
 
 
 @Composable
@@ -63,7 +64,7 @@ fun PersonalNAUSer(navController: NavHostController, viewModel: ViewModelNAUserP
                             )
                             Row() {
                                 Text(
-                                    viewModel.city.toString(),
+                                    city.toString(),
                                     fontSize = 25.sp,
                                     color = Color.Black
                                 )

@@ -62,7 +62,7 @@ fun EnterPageByer(navController: NavHostController) {
                 }
                 Box() {
                     Button(
-                        onClick = { navController.navigate("RegisterByer") },
+                        onClick = { navController.navigate("RegisterBuyer") },
                         modifier = Modifier
                             .padding(top = 10.dp)
                             .height(50.dp)

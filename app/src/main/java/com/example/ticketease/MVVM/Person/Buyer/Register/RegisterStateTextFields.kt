@@ -8,6 +8,8 @@ sealed class RegisterStateTextFields {
     data class Mobile(val value : String) : RegisterStateTextFields()
     data class Password(val value : String) : RegisterStateTextFields()
     data class RepeatPassword(val value: String) : RegisterStateTextFields()
+
+
     object RegisterBuyer:RegisterStateTextFields()
 
 }

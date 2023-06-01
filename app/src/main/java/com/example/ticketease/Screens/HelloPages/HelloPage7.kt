@@ -21,7 +21,7 @@ import androidx.navigation.NavHostController
 import com.example.ticketease.DataClasses.Person.Cities
 import com.example.ticketease.MVVM.HelloPagesPut.putCity
 import com.example.ticketease.R
-//var city = Cities.Moscow
+var city = Cities.Moscow
 @Composable
 fun HelloPage7(navController: NavHostController, c: putCity = hiltViewModel()) {
     val selectedCity = rememberSaveable { mutableStateOf(Cities.Voronezh) }
@@ -43,7 +43,10 @@ fun HelloPage7(navController: NavHostController, c: putCity = hiltViewModel()) {
                     onClick = {
                         selectedCity.value = Cities.Voronezh
                         isButtonPressedVrn.value = !isButtonPressedVrn.value
+                        role.name
+
                         c.put(Cities.Voronezh)
+                        city=Cities.Voronezh
                         toNextPage(navController)
 
                     },
@@ -68,6 +71,7 @@ fun HelloPage7(navController: NavHostController, c: putCity = hiltViewModel()) {
                         selectedCity.value = Cities.Moscow
                         isButtonPressedMsc.value = !isButtonPressedMsc.value
                         c.put(Cities.Moscow)
+                        city=Cities.Moscow
                         toNextPage(navController)
                     },
                     modifier = Modifier.padding(top = 10.dp).height(50.dp).width(300.dp).offset(y = 270.dp, x = 0.dp),
@@ -91,6 +95,7 @@ fun HelloPage7(navController: NavHostController, c: putCity = hiltViewModel()) {
                         selectedCity.value = Cities.SaintPetersburg
                         isButtonPressedSpb.value = !isButtonPressedSpb.value
                         c.put(Cities.SaintPetersburg)
+                        city=Cities.SaintPetersburg
                         toNextPage(navController)
                               },
                     modifier = Modifier.padding(top = 10.dp).height(50.dp).width(300.dp).offset(y = 270.dp, x = 0.dp),
@@ -115,7 +120,7 @@ fun HelloPage7(navController: NavHostController, c: putCity = hiltViewModel()) {
      if(role== Role.BUYER){
          navController.navigate("EnterPageByer")
      }else if(role ==Role.ORGANIZER){
-         navController.navigate("")
+         navController.navigate("EnterPageOrg")
 
      }else if(role==Role.NAUSER){
          navController.navigate("CatalogNAUser")
