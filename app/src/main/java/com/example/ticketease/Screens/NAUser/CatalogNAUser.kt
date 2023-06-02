@@ -17,16 +17,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.example.ticketease.MVVM.Event.Catalog.ViewModelCatalog
-import com.example.ticketease.MVVM.Event.Ticket.ViewModelTicket
+
 import com.example.ticketease.MVVM.Person.Buyer.Avtorize.AvtResult
 import com.example.ticketease.MVVM.Person.Buyer.Personal.ViewModelPersonal
 import com.example.ticketease.R
 
 @Composable
  fun CatalogNAUser(navController: NavHostController ) {
-    val viewModel: ViewModelCatalog = hiltViewModel()
-    val viewModelTicket: ViewModelTicket = hiltViewModel()
+
 
     Column() {
         Box(
@@ -82,6 +80,7 @@ import com.example.ticketease.R
                         .wrapContentSize(Alignment.Center)
                         .verticalScroll(rememberScrollState())
                 ) {
+                    /*
                     val list = viewModel.catalog
                     var i:Int=0
                     for (l in list){
@@ -96,6 +95,8 @@ import com.example.ticketease.R
                         )
                         i++
                     }
+
+                     */
                 }
 
                     Box(

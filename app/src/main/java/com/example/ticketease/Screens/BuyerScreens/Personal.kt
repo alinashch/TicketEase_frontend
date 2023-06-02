@@ -57,7 +57,7 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
 
 
                         Button(
-                            onClick = {  },
+                            onClick = {navController.navigate("PersonalCorrectInformation")  },
                             modifier = Modifier
                                 .padding(top = 15.dp)
                                 .height(95.dp)
@@ -75,7 +75,7 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                                         contentDescription = "image",
                                         modifier = Modifier
                                             .size(29.dp, 29.dp)
-                                            .offset(235.dp, 25.dp),
+                                            .offset(205.dp, 25.dp),
                                         contentScale = ContentScale.Crop
                                     )
                                     Row(
@@ -120,7 +120,7 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                                         modifier = Modifier
                                             .size(25.dp, 25.dp)
                                             .clickable{
-
+                                                      navController.navigate("CitySelector")
                                             },
                                         contentScale = ContentScale.Crop,
 
@@ -166,7 +166,7 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                             modifier = Modifier
                                 .background(color = colorResource(R.color.white))
                                 .fillMaxWidth()
-                                .offset(0.dp, 113.dp)
+                                .offset(0.dp, 300.dp)
                                 .height(70.dp), contentAlignment = Alignment.BottomCenter
                         ) {
                             Row{
@@ -245,7 +245,7 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                                             .size(31.dp, 31.dp)
                                             .offset(-15.dp, -5.dp)
                                             .clickable() {
-                                                //navController.navigate(NavigationItem.PersonalNAUser.route)
+                                                navController.navigate("Personal")
                                             },
                                         contentScale = ContentScale.Crop
                                     )

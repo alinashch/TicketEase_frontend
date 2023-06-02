@@ -3,10 +3,7 @@ package com.example.ticketease.MVVM.Person.Buyer
 import android.app.Application
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
-import com.example.ticketease.MVVM.Event.Catalog.CatalogRepository
-import com.example.ticketease.MVVM.Event.Catalog.CatalogRepositoryImpl
-import com.example.ticketease.MVVM.Event.Ticket.TicketRepository
-import com.example.ticketease.MVVM.Event.Ticket.TicketRepositoryImpl
+
 
 import com.example.ticketease.MVVM.Person.Buyer.Avtorize.AvtRepository
 import com.example.ticketease.MVVM.Person.Buyer.Avtorize.AvtRepositoryImpl
@@ -14,6 +11,10 @@ import com.example.ticketease.MVVM.Person.Buyer.Personal.PersonalRepository
 import com.example.ticketease.MVVM.Person.Buyer.Register.RegisterRepository
 import com.example.ticketease.MVVM.Person.Buyer.Register.RegisterRepositoryImpl
 import com.example.ticketease.MVVM.Person.Buyer.Personal.PersonalRepositoryImpl
+import com.example.ticketease.MVVM.Person.Buyer.UpdateBuyer.UpdateBuyerRepository
+import com.example.ticketease.MVVM.Person.Buyer.UpdateBuyer.UpdateBuyerRepositoryImpl
+import com.example.ticketease.MVVM.Person.Buyer.UpdateCity.UpdateCityRepository
+import com.example.ticketease.MVVM.Person.Buyer.UpdateCity.UpdateCityRepositoryImpl
 import com.example.ticketease.MVVM.Person.Organizer.Avtorize.AvtRepositoryOrg
 import com.example.ticketease.MVVM.Person.Organizer.Avtorize.AvtRepositoryOrgImpl
 import com.example.ticketease.MVVM.Person.Organizer.Personal.PersonalRepositoryOrg
@@ -72,18 +73,6 @@ fun provideSharedPref(app : Application) : SharedPreferences{
 
     @Provides
     @Singleton
-    fun provideCatalogRepository(api : BuyerRetrofitAPI) : CatalogRepository {
-        return CatalogRepositoryImpl(api)
-    }
-
-    @Provides
-    @Singleton
-    fun provideTicketRepository(api : BuyerRetrofitAPI) : TicketRepository {
-        return TicketRepositoryImpl(api)
-    }
-
-    @Provides
-    @Singleton
     fun provideRegisterRepositoryOrg(api : BuyerRetrofitAPI,prefs : SharedPreferences) : RegisterRepositoryOrg {
         return RegisterRepositoryOrgImpl(api, prefs)
     }
@@ -99,6 +88,18 @@ fun provideSharedPref(app : Application) : SharedPreferences{
     @Singleton
     fun providePersonalRepositoryOrg(api : BuyerRetrofitAPI,prefs : SharedPreferences) : PersonalRepositoryOrg {
         return PersonalRepositoryOrgImpl(api, prefs)
+    }
+
+    @Provides
+    @Singleton
+    fun providePersonalUpdateBuyer(api : BuyerRetrofitAPI,prefs : SharedPreferences) : UpdateBuyerRepository {
+        return UpdateBuyerRepositoryImpl(api, prefs)
+    }
+
+    @Provides
+    @Singleton
+    fun providePersonalUpdateBuyerCity(api : BuyerRetrofitAPI,prefs : SharedPreferences) : UpdateCityRepository {
+        return UpdateCityRepositoryImpl(api, prefs)
     }
 }
 
