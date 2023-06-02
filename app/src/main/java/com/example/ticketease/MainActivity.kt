@@ -68,6 +68,9 @@ fun ScreenView(){
         composable("CatalogNAUser"){ CatalogNAUser(navController) }
         composable("PersonalNAUSer"){ PersonalNAUSer(navController) }
         composable("PrefarenceNAUSer"){ PrefarenceNAUSer(navController) }
+        composable("PersonalCorrectInformation"){ PersonalCorrectInformation(navController) }
+        composable("CitySelector"){ CitySelector(navController) }
+
     }
 }
 

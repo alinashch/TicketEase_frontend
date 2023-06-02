@@ -86,23 +86,7 @@ fun AvtorizeOrg(navController: NavHostController, viewModel: ViewModelAvtOrg = h
                         .padding(5.dp)
                     ,
                 )
-                Button(
-                    onClick = {
-                        //navController.navigate(NavigationItem.RecoveryPasswordOrg.route)
-                        },
-                    modifier = Modifier
-                        .padding(top = 20.dp)
-                        .height(50.dp)
-                        .width(150.dp),
 
-                    colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(R.color.white)),
-                    )
-                {
-                    Column {
-                        Text("Забыли пароль", fontSize = 10.sp, color = Color.Black)
-
-                    }
-                }
                 Button(
                     onClick = {
                         navController.navigate("PersonalOrg")

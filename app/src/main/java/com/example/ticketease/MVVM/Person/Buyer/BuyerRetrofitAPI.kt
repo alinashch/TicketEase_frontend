@@ -18,11 +18,12 @@ interface BuyerRetrofitAPI {
     @POST("/buyers/token")
    suspend  fun buyerByToken(@Body dataModel: BuyerResponse?):  BuyerWithoutPswd
 
-    @POST("/events")
-    suspend  fun selectAllEvents():  List<EventDTO>
+    @PUT("/buyers/id/update")
+    suspend  fun buyerUpdate(@Body dataModel: BuyerWithoutPswd?):  BuyerWithoutPswd
 
-    @POST ("/{eventId}")
-    suspend fun selectByIDTicket(@Path("eventId") eventId: Long):List<TicketDTO>
+    @POST("/buyers/updateCity")
+     suspend  fun buyerUpdateCity(@Body dataModel: BuyerUpdateCity?):Boolean
+
 
     @POST("/organizers/create")
     suspend fun singInOrg(@Body dataModel: Organizer?): OrganizerWithoutPswd
