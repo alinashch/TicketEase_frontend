@@ -44,10 +44,8 @@ fun HelloPage3(navController: NavHostController) {
                         Image(
                             painterResource(id = R.drawable.krest),
                             contentDescription = "image",
-                            modifier = Modifier.size(70.dp, 70.dp).clickable(){
-                                role=Role.NAUSER
-
-                                navController .navigate("HelloPage7")
+                            modifier = Modifier.size(70.dp, 70.dp).clickable{
+                                navController .navigate("HelloPage5")
                             }
 
                         )

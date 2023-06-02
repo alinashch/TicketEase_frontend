@@ -15,5 +15,5 @@ class ViewModelPersonalOrg @Inject constructor(
     private val prefs : SharedPreferences
 ) : ViewModel() {
     var city  = prefs.getString("city","Moscow")
-    var state by mutableStateOf(Gson().fromJson(prefs.getString("organize",null)!!, OrganizerWithoutPswd::class.java))
+    var state by mutableStateOf(Gson().fromJson(prefs.getString("organizer",null)!!, OrganizerWithoutPswd::class.java))
 }

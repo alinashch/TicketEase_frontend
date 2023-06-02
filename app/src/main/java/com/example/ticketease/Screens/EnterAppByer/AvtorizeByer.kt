@@ -38,11 +38,11 @@ fun AvtorizeByer(navController: NavHostController, viewModel: ViewModelAvtBuyer 
                     navController.navigate("Personal")
                 }
                 is AvtResult.IncorrectPassword -> {
-                    navController.navigate("ErrorNoLogin")
+                    navController.navigate("UncorrectTextBuyer")
 
                 }
                 is AvtResult.UnknownLogin -> {
-                    navController.navigate("ErrorNoLogin")
+                    navController.navigate("CannotFindUserBuyer")
                 }
             }
         }

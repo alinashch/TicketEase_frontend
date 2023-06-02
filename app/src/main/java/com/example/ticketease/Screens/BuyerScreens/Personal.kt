@@ -57,7 +57,7 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
 
 
                         Button(
-                            onClick = {navController.navigate("PersonalCorrectInformation")  },
+                            onClick = { navController.navigate("PersonalCorrectInformation") },
                             modifier = Modifier
                                 .padding(top = 15.dp)
                                 .height(95.dp)
@@ -121,7 +121,7 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                                             .size(25.dp, 25.dp)
                                             .clickable{
                                                       navController.navigate("CitySelector")
-                                            },
+                                                      },
                                         contentScale = ContentScale.Crop,
 
                                         )
@@ -139,7 +139,7 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                         ) {
 
                             Button(
-                                onClick = {  },
+                                onClick = {navController.navigate("EnterPageBuyer")  },
                                 modifier = Modifier
                                     .height(50.dp)
                                     .offset(0.dp, 45.dp)
@@ -160,13 +160,18 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                                 }
                             }
                         }
+                        Box(modifier = Modifier
+                            .padding(top = 15.dp)
+                            .height(185.dp)
+                            .width(450.dp)){
 
+                        }
 
                         Box(
                             modifier = Modifier
                                 .background(color = colorResource(R.color.white))
                                 .fillMaxWidth()
-                                .offset(0.dp, 300.dp)
+                                .offset(0.dp, 113.dp)
                                 .height(70.dp), contentAlignment = Alignment.BottomCenter
                         ) {
                             Row{
@@ -183,7 +188,7 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                                         contentScale = ContentScale.Crop
                                     )
                                     Text(
-                                        text = "Каталог ",
+                                        text = "Каталог",
                                         fontSize = 10.sp,
                                         modifier = Modifier.padding(23.dp, 5.dp)
                                     )
@@ -245,7 +250,7 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                                             .size(31.dp, 31.dp)
                                             .offset(-15.dp, -5.dp)
                                             .clickable() {
-                                                navController.navigate("Personal")
+                                                //navController.navigate(NavigationItem.PersonalNAUser.route)
                                             },
                                         contentScale = ContentScale.Crop
                                     )

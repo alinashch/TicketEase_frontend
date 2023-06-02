@@ -36,14 +36,14 @@ fun AvtorizeOrg(navController: NavHostController, viewModel: ViewModelAvtOrg = h
                 res ->
             when (res){
                 is AvtResultOrg.Avtorized -> {
-                    navController.navigate("Personal")
+                    navController.navigate("PersonalOrg")
                 }
                 is AvtResultOrg.IncorrectPassword -> {
-                    navController.navigate("ErrorNoLogin")
+                    navController.navigate("UncorrectTextOrg")
 
                 }
                 is AvtResultOrg.UnknownLogin -> {
-                    navController.navigate("ErrorNoLogin")
+                    navController.navigate("CannotFindUserOrg")
                 }
             }
         }
@@ -67,7 +67,6 @@ fun AvtorizeOrg(navController: NavHostController, viewModel: ViewModelAvtOrg = h
             }
             Column(modifier = Modifier.size(500.dp, 600.dp),horizontalAlignment = Alignment.CenterHorizontally)
             {
-
 
                 TextField(
                     value = state.login,

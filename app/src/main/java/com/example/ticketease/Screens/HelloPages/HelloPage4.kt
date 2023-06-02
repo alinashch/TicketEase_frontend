@@ -33,21 +33,19 @@ fun HelloPage4(navController: NavHostController) {
         Column(modifier= Modifier.size(320.dp, 900.dp))
         {
             Box(contentAlignment = Alignment.TopStart) {
-                Column() {
+                Column {
                     Box(modifier = Modifier.size(10.dp, 10.dp)) {
 
                     }
-                    Row() {
+                    Row{
                         Box(modifier = Modifier.size(270.dp, 10.dp)) {
 
                         }
                         Image(
                             painterResource(id = R.drawable.krest),
                             contentDescription = "image",
-                            modifier = Modifier.size(70.dp, 70.dp).clickable(){
-                                role=Role.NAUSER
-
-                                navController .navigate("HelloPage7")
+                            modifier = Modifier.size(70.dp, 70.dp).clickable{
+                                navController .navigate("HelloPage5")
                             }
 
                         )
@@ -62,12 +60,12 @@ fun HelloPage4(navController: NavHostController) {
                     modifier = Modifier
                         .width(280.dp)
                         .align(alignment = Alignment.TopEnd)
-                        .offset(y = 25.dp, x = -105.dp),
+                        .offset(y = 25.dp, x = (-105).dp),
                     contentScale = ContentScale.Crop
                 )
             }
             Box(contentAlignment = Alignment.Center) {
-                Column(modifier = Modifier.size(300.dp, 250.dp) .offset(y = -55.dp, x = -20.dp)) {
+                Column(modifier = Modifier.size(300.dp, 250.dp) .offset(y = (-55).dp, x = (-20).dp)) {
                     Text(
                         text = "Кем вы являетесь, пользуясь приложением?",
                         fontSize = 32.sp,

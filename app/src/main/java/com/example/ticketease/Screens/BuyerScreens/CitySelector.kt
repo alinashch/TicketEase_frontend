@@ -17,13 +17,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.ticketease.DataClasses.Person.Cities
+import com.example.ticketease.MVVM.HelloPages.HelloPage7ChooseCity
+import com.example.ticketease.MVVM.HelloPages.HelloPage7ViewModel
+import com.example.ticketease.MVVM.Person.Buyer.CitySelector.CitySelector
+import com.example.ticketease.MVVM.Person.Buyer.CitySelector.ViewModelCitySelector
 import com.example.ticketease.R
-import com.example.ticketease.Screens.HelloPages.city
 
 @Composable
-fun CitySelector(navController: NavHostController) {
+fun CitySelector(navController: NavHostController, viewModel: ViewModelCitySelector = hiltViewModel()) {
 
     val selectedCity = rememberSaveable { mutableStateOf(Cities.Voronezh) }
     val isButtonPressedVrn = remember { mutableStateOf(false) }
@@ -31,8 +35,6 @@ fun CitySelector(navController: NavHostController) {
     val isButtonPressedMsc = remember { mutableStateOf(false) }
 
     Box(
-
-
         modifier = Modifier
             .background(color = colorResource(R.color.white))
             .fillMaxSize(),
@@ -46,9 +48,8 @@ fun CitySelector(navController: NavHostController) {
                 Text("Город", fontSize = 35.sp, color = Color.Black)
                 Button(
                     onClick = {
-                        selectedCity.value = Cities.Voronezh
-                        isButtonPressedVrn.value = !isButtonPressedVrn.value
-                        city=Cities.Voronezh
+                        viewModel.city(CitySelector.City(Cities.Voronezh))
+                        viewModel.city(CitySelector.SaveCity)
                         navController.navigate("Personal")
                     },
                     modifier = Modifier.padding(top = 140.dp).height(50.dp).width(300.dp)
@@ -71,9 +72,8 @@ fun CitySelector(navController: NavHostController) {
             Box(contentAlignment = Alignment.Center) {
                 Button(
                     onClick = {
-                        selectedCity.value = Cities.Moscow
-                        isButtonPressedMsc.value = !isButtonPressedMsc.value
-                        city= Cities.Moscow
+                        viewModel.city(CitySelector.City(Cities.Moscow))
+                        viewModel.city(CitySelector.SaveCity)
                         navController.navigate("Personal")
                     },
                     modifier = Modifier.padding(top = 20.dp).height(50.dp).width(300.dp)
@@ -96,9 +96,8 @@ fun CitySelector(navController: NavHostController) {
             Box(contentAlignment = Alignment.Center) {
                 Button(
                     onClick = {
-                        selectedCity.value = Cities.SaintPetersburg
-                        isButtonPressedSpb.value = !isButtonPressedSpb.value
-                        city=Cities.SaintPetersburg
+                        viewModel.city(CitySelector.City(Cities.SaintPetersburg))
+                        viewModel.city(CitySelector.SaveCity)
                         navController.navigate("Personal")
                     },
                     modifier = Modifier.padding(top = 20.dp).height(50.dp).width(300.dp)
@@ -120,23 +119,7 @@ fun CitySelector(navController: NavHostController) {
             }
             Box(contentAlignment = Alignment.TopStart) {
 
-                Button(
-                    onClick = { navController.navigate("Personal") },
-                    modifier = Modifier
-                        .height(50.dp)
-                        .offset(y = 370.dp, x = 20.dp)
-                        .width(270.dp),
-                    shape = RoundedCornerShape(50),
-                    colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(R.color.backgroud)),
 
-                    )
-                {
-
-                    Column {
-                        Text("Применить", fontSize = 20.sp, color = Color.White)
-
-                    }
-                }
             }
 
 

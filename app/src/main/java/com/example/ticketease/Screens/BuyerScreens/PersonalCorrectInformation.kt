@@ -90,11 +90,11 @@ fun PersonalCorrectInformation(navController: NavHostController, viewModel: View
 
                         Column {
                             Row() {
-                                Text("p.name" + " ", fontSize = 25.sp, color = Color.Black)
-                                Text("p.surname", fontSize = 25.sp, color = Color.Black)
+                                Text(state.name + " ", fontSize = 25.sp, color = Color.Black)
+                                Text(state.surname, fontSize = 25.sp, color = Color.Black)
 
                             }
-                            Text("p.phone", fontSize = 25.sp, color = Color.Black)
+                            Text(state.mobile.toString(), fontSize = 25.sp, color = Color.Black)
 
 
                         }

@@ -37,16 +37,13 @@ fun RegisterBuyer(navController: NavHostController, viewModel: ViewModelRegistBu
                     navController.navigate("Personal")
                 }
                 is RegistResult.Unregistered -> {
-                    Toast.makeText(
-                        context,
-                        "login isn't unique",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    navController.navigate("AvtorizeByer")
+
                 }
                 is RegistResult.UnknownError -> {
                     Toast.makeText(
                         context,
-                        "An unknown error occurred",
+                        "UncorrectTextBuyer",
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -81,7 +78,7 @@ fun RegisterBuyer(navController: NavHostController, viewModel: ViewModelRegistBu
                     onValueChange = { viewModel.register(RegisterStateTextFields.Name(it)) },
                     placeholder = { Text(text = "Имя") },
                     modifier = Modifier
-                        .padding(5.dp).clickable(){
+                        .padding(5.dp).clickable{
                             val locale = Locale("ru")
                             Locale.setDefault(locale)
                             val resources = context.resources

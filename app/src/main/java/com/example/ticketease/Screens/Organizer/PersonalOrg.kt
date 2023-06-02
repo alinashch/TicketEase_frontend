@@ -22,7 +22,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.ticketease.MVVM.Person.Organizer.Personal.ViewModelPersonalOrg
 import com.example.ticketease.R
-import com.example.ticketease.Screens.HelloPages.city
 
 
 @Composable
@@ -60,8 +59,8 @@ fun PersonalOrg(navController: NavHostController, viewModel: ViewModelPersonalOr
 
                         Button(
                             onClick = {
-                                //navController.navigate(NavigationItem.PersonalCorrectInformationOrg.route)
-                                      },
+                                navController.navigate("PersonalCorrectInformationOrg")
+                            },
                             modifier = Modifier
                                 .padding(top = 15.dp)
                                 .height(95.dp)
@@ -78,21 +77,32 @@ fun PersonalOrg(navController: NavHostController, viewModel: ViewModelPersonalOr
                                         contentDescription = "image",
                                         modifier = Modifier
                                             .size(29.dp, 29.dp)
-                                            .offset(235.dp, 25.dp),
+                                            .offset(205.dp, 25.dp),
                                         contentScale = ContentScale.Crop
                                     )
                                     Row(
                                         modifier = Modifier
                                             .offset(-80.dp, -20.dp)
                                     ) {
-                                        Text(state.name + " ", fontSize = 20.sp, color = Color.Black)
-                                        Text(state.surname.toString(), fontSize = 20.sp, color = Color.Black)
+                                        Text(
+                                            state.name + " ",
+                                            fontSize = 20.sp,
+                                            color = Color.Black
+                                        )
+                                        Text(
+                                            state.surname.toString(),
+                                            fontSize = 20.sp,
+                                            color = Color.Black
+                                        )
 
 
                                     }
                                     Text(
-                                        state.mobile.toString(), fontSize = 20.sp, modifier = Modifier
-                                            .offset(-80.dp, -20.dp), color = Color.Black
+                                        state.mobile.toString(),
+                                        fontSize = 20.sp,
+                                        modifier = Modifier
+                                            .offset(-80.dp, -20.dp),
+                                        color = Color.Black
                                     )
                                 }
                             }
@@ -121,6 +131,7 @@ fun PersonalOrg(navController: NavHostController, viewModel: ViewModelPersonalOr
                                         modifier = Modifier
                                             .size(25.dp, 25.dp)
                                             .clickable() {
+                                                navController.navigate("CitySelectorOrg")
 
                                             },
                                         contentScale = ContentScale.Crop,
@@ -128,160 +139,100 @@ fun PersonalOrg(navController: NavHostController, viewModel: ViewModelPersonalOr
                                         )
 
                                 }
-                                Spacer(modifier = Modifier.height(40.dp))
 
-                                Text(
-                                    "Задать вопрос",
-                                    fontSize = 25.sp,
-                                    color = Color.Black,
-                                    fontWeight = FontWeight.Bold
-                                )
-                                Box() {
+                                Box(
+                                    contentAlignment = Alignment.Center,
+                                    modifier = Modifier.padding(50.dp)
+                                ) {
+
+                                    Button(
+                                        onClick = {
+                                            navController.navigate("EnterPageByer")
+                                        },
+                                        modifier = Modifier
+                                            .height(50.dp)
+                                            .offset(0.dp, 45.dp)
+                                            .width(350.dp),
+                                        shape = RoundedCornerShape(50),
+                                        colors = ButtonDefaults.buttonColors(
+                                            backgroundColor = colorResource(
+                                                R.color.backgroud
+                                            )
+                                        ),
+
+                                        )
+                                    {
+
+                                        Column {
+                                            Text("Выйти", fontSize = 25.sp, color = Color.White)
+
+                                        }
+                                    }
+                                }
+
+                                Box(modifier = Modifier
+                                    .padding(top = 15.dp)
+                                    .height(185.dp)
+                                    .width(450.dp)){
+
+                                }
+                                Box(
+                                    modifier = Modifier
+                                        .background(color = colorResource(R.color.white))
+                                        .fillMaxWidth()
+                                        .offset(-15.dp, 225.dp)
+                                        .height(70.dp), contentAlignment = Alignment.BottomCenter
+                                ) {
                                     Row() {
-                                        Image(
-                                            painterResource(id = R.drawable.vk),
-                                            contentDescription = "image",
-                                            modifier = Modifier
-                                                .size(50.dp, 50.dp)
-                                                .clickable() {
-
-                                                },
-                                            contentScale = ContentScale.Crop,
-
+                                        Column() {
+                                            Image(
+                                                painterResource(id = R.drawable.eventwhite),
+                                                contentDescription = "image",
+                                                modifier = Modifier
+                                                    .size(40.dp, 40.dp)
+                                                    .offset(125.dp, -5.dp)
+                                                    .clickable() {
+                                                        //navController.navigate(NavigationItem.CreateEvent.route)
+                                                    },
+                                                contentScale = ContentScale.Crop
                                             )
-                                        Box(modifier = Modifier.width(40.dp)) {
+                                            Text(
+                                                text = "Создать мероприятие ",
+                                                fontSize = 10.sp,
+                                                modifier = Modifier.padding(85.dp, 5.dp)
+                                            )
+                                        }
+                                        Box(modifier = Modifier.size(30.dp, 30.dp)) {
 
                                         }
-                                        Image(
-                                            painterResource(id = R.drawable.telegram),
-                                            contentDescription = "image",
-                                            modifier = Modifier
-                                                .size(50.dp, 50.dp)
-                                                .clickable() {
-
-                                                },
-                                            contentScale = ContentScale.Crop,
-
+                                        Column() {
+                                            Image(
+                                                painterResource(id = R.drawable.avatarbl),
+                                                contentDescription = "image",
+                                                modifier = Modifier
+                                                    .size(35.dp, 35.dp)
+                                                    .offset(-20.dp, -4.dp)
+                                                    .clickable() {
+                                                        navController.navigate("PersonalOrg")
+                                                    },
+                                                contentScale = ContentScale.Crop
                                             )
-                                        Box(modifier = Modifier.width(40.dp)) {
-
+                                            Text(
+                                                text = "Личный кабинет",
+                                                fontSize = 10.sp,
+                                                modifier = Modifier.offset(-40.dp, 10.dp)
+                                            )
                                         }
-                                        Image(
-                                            painterResource(id = R.drawable.email),
-                                            contentDescription = "image",
-                                            modifier = Modifier
-                                                .size(50.dp, 50.dp)
-                                                .clickable() {
-
-                                                },
-                                            contentScale = ContentScale.Crop,
-
-                                            )
-                                        Box(modifier = Modifier.width(40.dp)) {
-
-                                        }
-                                        Image(
-                                            painterResource(id = R.drawable.whatsapp),
-                                            contentDescription = "image",
-                                            modifier = Modifier
-                                                .size(50.dp, 50.dp)
-                                                .clickable() {
-
-                                                },
-                                            contentScale = ContentScale.Crop,
-
-                                            )
 
                                     }
                                 }
                             }
                         }
-
-                        Box(
-                            contentAlignment = Alignment.Center,
-                            modifier = Modifier.padding(50.dp)
-                        ) {
-
-                            Button(
-                                onClick = {
-                                    navController.navigate("EnterPageByer")
-                                          },
-                                modifier = Modifier
-                                    .height(50.dp)
-                                    .offset(0.dp, 45.dp)
-                                    .width(350.dp),
-                                shape = RoundedCornerShape(50),
-                                colors = ButtonDefaults.buttonColors(
-                                    backgroundColor = colorResource(
-                                        R.color.backgroud
-                                    )
-                                ),
-
-                                )
-                            {
-
-                                Column {
-                                    Text("Выйти", fontSize = 25.sp, color = Color.White)
-
-                                }
-                            }
-                        }
-
-
-                        Box(
-                            modifier = Modifier
-                                .background(color = colorResource(R.color.white))
-                                .fillMaxWidth()
-                                .offset(-15.dp, 225.dp)
-                                .height(70.dp), contentAlignment = Alignment.BottomCenter
-                        ) {
-                            Row() {
-                                Column() {
-                                    Image(
-                                        painterResource(id = R.drawable.eventwhite),
-                                        contentDescription = "image",
-                                        modifier = Modifier
-                                            .size(40.dp, 40.dp)
-                                            .offset(125.dp, -5.dp)
-                                            .clickable() {
-                                                //navController.navigate(NavigationItem.CreateEvent.route)
-                                            },
-                                        contentScale = ContentScale.Crop
-                                    )
-                                    Text(
-                                        text = "Создать мероприятие ",
-                                        fontSize = 10.sp,
-                                        modifier = Modifier.padding(85.dp, 5.dp)
-                                    )
-                                }
-                                Box(modifier = Modifier.size(30.dp, 30.dp)) {
-
-                                }
-                                Column() {
-                                    Image(
-                                        painterResource(id = R.drawable.avatarbl),
-                                        contentDescription = "image",
-                                        modifier = Modifier
-                                            .size(35.dp, 35.dp)
-                                            .offset(-20.dp, -4.dp)
-                                            .clickable() {
-                                                navController.navigate("PersonalOrg")
-                                            },
-                                        contentScale = ContentScale.Crop
-                                    )
-                                    Text(
-                                        text = "Личный кабинет",
-                                        fontSize = 10.sp,
-                                        modifier = Modifier.offset(-40.dp, 10.dp)
-                                    )
-                                }
-
-                            }
-                        }
                     }
+
                 }
             }
-
         }
     }
 }
+

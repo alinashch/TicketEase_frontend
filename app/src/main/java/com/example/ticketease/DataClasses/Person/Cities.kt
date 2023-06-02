@@ -1,5 +1,8 @@
 package com.example.ticketease.DataClasses.Person
 
+import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.Serializable
+
 enum class Cities (val city : String) {
     Voronezh("Воронеж"),
     Moscow("Москва"),
@@ -7,3 +10,7 @@ enum class Cities (val city : String) {
 
 
 }
+@Serializable
+data class City(
+    @JsonProperty("city")
+    val city : Cities)

@@ -17,13 +17,16 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.ticketease.DataClasses.Person.Buyer
+import com.example.ticketease.MVVM.Person.Buyer.Catalog.ViewModelCatalog
+import com.example.ticketease.MVVM.Person.Buyer.CitySelector.ViewModelCitySelector
 
-import com.example.ticketease.MVVM.Person.Buyer.BuyerRetrofitAPI
 import com.example.ticketease.MVVM.Person.Buyer.Personal.ViewModelPersonal
 import com.example.ticketease.R
+import kotlinx.coroutines.flow.onEach
+
 
 @Composable
- fun Catalog(navController: NavHostController) {
+ fun Catalog(navController: NavHostController, viewModel: ViewModelCatalog = hiltViewModel()) {
     var searchQuery by remember { mutableStateOf("") }
     Column() {
         Box(
@@ -53,10 +56,11 @@ import com.example.ticketease.R
                         .wrapContentSize(Alignment.Center)
                         .verticalScroll(rememberScrollState())
                 ) {
-                    /*
-                    val list = viewModel.catalog
+                    val list = viewModel.getCatalog()
+                    list.onEach {
+                        list.
+                    }
                     for (l in list){
-
                             ListItem(
                                 cost = l.name,
                                 location = l.nameGroup.toString(),
@@ -65,8 +69,6 @@ import com.example.ticketease.R
                                 R.drawable.vkz
                             )
                         }
-
-                     */
 
 
                 }

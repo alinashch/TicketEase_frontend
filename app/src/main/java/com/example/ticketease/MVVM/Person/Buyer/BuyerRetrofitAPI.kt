@@ -1,12 +1,10 @@
 package com.example.ticketease.MVVM.Person.Buyer
 
-import com.example.ticketease.DataClasses.Event.EventDTO
+import com.example.ticketease.DataClasses.Catalog
 import com.example.ticketease.DataClasses.Person.*
-import com.example.ticketease.DataClasses.Ticket.TicketDTO
 import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.http.PUT
-import retrofit2.http.Path
 
 interface BuyerRetrofitAPI {
     @POST("/buyers/create")
@@ -35,4 +33,16 @@ interface BuyerRetrofitAPI {
 
     @POST("/organizers/token")
     suspend fun orgByToken(@Body dataModel: OrganizerResponse?):  OrganizerWithoutPswd
+
+
+ @POST("/room/catalog")
+ suspend fun catalog(@Body city: String?): List<Catalog>
+
+ @POST("/organizers/updateCity")
+ suspend  fun organizersUpdateCity(@Body dataModel: OrganizerUpdateCity?):Boolean
+
+ @PUT("/organizers/id/update")
+ suspend  fun orgUpdate(@Body dataModel: OrganizerWithoutPswd?):  OrganizerWithoutPswd
+
+
 }

@@ -25,7 +25,6 @@ import com.example.ticketease.R
 @Composable
  fun CatalogNAUser(navController: NavHostController ) {
 
-
     Column() {
         Box(
 
@@ -80,10 +79,9 @@ import com.example.ticketease.R
                         .wrapContentSize(Alignment.Center)
                         .verticalScroll(rememberScrollState())
                 ) {
-                    /*
-                    val list = viewModel.catalog
+                    //val list = viewModel.catalog
                     var i:Int=0
-                    for (l in list){
+                    /*for (l in list){
                         viewModelTicket.id= l.id!!
                         val ticket=viewModelTicket.tickets
                         com.example.ticketease.Screens.EnterAppByer.ListItem(
@@ -94,9 +92,7 @@ import com.example.ticketease.R
                             R.drawable.vkz
                         )
                         i++
-                    }
-
-                     */
+                    }*/
                 }
 
                     Box(
