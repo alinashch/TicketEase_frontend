@@ -1,5 +1,6 @@
 package com.example.ticketease.Screens.Organizer
 
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -27,6 +28,7 @@ import com.example.ticketease.MVVM.Event.EnterParam.ViewModelEnterParam
 import com.example.ticketease.MVVM.Person.Buyer.Register.RegisterStateTextFields
 import com.example.ticketease.MVVM.Person.Buyer.Register.ViewModelRegistBuyer
 import com.example.ticketease.R
+import com.example.ticketease.Screens.EnterAppByer.checkSymbols
 
 @Composable
 fun CreateEvent(navController: NavHostController, viewModel: ViewModelEnterParam = hiltViewModel()) {
@@ -59,8 +61,7 @@ fun CreateEvent(navController: NavHostController, viewModel: ViewModelEnterParam
                     onValueChange = { viewModel.enter(EnterParamStateTextFields.Name(it)) },
                     placeholder = { Text(text = "Название мероприятия") },
                     modifier = Modifier
-                        .padding(5.dp)
-                    ,
+                        .padding(5.dp),
                 )
 
                 TextField(
@@ -68,63 +69,72 @@ fun CreateEvent(navController: NavHostController, viewModel: ViewModelEnterParam
                     onValueChange = { viewModel.enter(EnterParamStateTextFields.Cost(it)) },
                     placeholder = { Text(text = "Стоимость мерпориятия") },
                     modifier = Modifier
-                        .padding(5.dp)
-                    ,
+                        .padding(5.dp),
                 )
                 TextField(
                     value = stateDate.value,
                     onValueChange = { viewModel.enter(EnterParamStateTextFields.Date(it)) },
                     placeholder = { Text(text = "Дата дд.мм.гг") },
                     modifier = Modifier
-                        .padding(5.dp)
-                    ,
+                        .padding(5.dp),
                 )
                 TextField(
                     value = state.type.toString(),
                     onValueChange = { viewModel.enter(EnterParamStateTextFields.Type(it)) },
                     placeholder = { Text(text = "Тип мероприятия") },
                     modifier = Modifier
-                        .padding(5.dp)
-                    ,
+                        .padding(5.dp),
                 )
                 TextField(
                     value = state.genre.toString(),
                     onValueChange = { viewModel.enter(EnterParamStateTextFields.Genre(it)) },
                     placeholder = { Text(text = "Жанр мероприятия") },
                     modifier = Modifier
-                        .padding(5.dp)
-                    ,
+                        .padding(5.dp),
                 )
                 TextField(
                     value = state.nameGroup.toString(),
                     onValueChange = { viewModel.enter(EnterParamStateTextFields.NameGroup(it)) },
                     placeholder = { Text(text = "Название коллектива") },
                     modifier = Modifier
-                        .padding(5.dp)
-                    ,
+                        .padding(5.dp),
                 )
                 TextField(
                     value = state.description.toString(),
                     onValueChange = { viewModel.enter(EnterParamStateTextFields.Description(it)) },
                     placeholder = { Text(text = "Описание") },
                     modifier = Modifier
-                        .padding(5.dp).height(130.dp)
-                    ,
+                        .padding(5.dp).height(130.dp),
                 )
 
                 Box() {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
                         Button(
                             onClick = {
-                                viewModel.enter(EnterParamStateTextFields.Enter)
-                                navController.navigate("PlaceSelector") },
+                                if (checkSymbols(state.name) and checkSymbols(state.genre!!) and checkSymbols(
+                                        state.type!!
+                                    ) and checkSymbols(
+                                        state.description!!
+                                    ) and stateDate.value.contains("^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})\$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))\$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})\$".toRegex())
+                                ) {
+
+                                    viewModel.enter(EnterParamStateTextFields.Enter)
+                                    navController.navigate("PlaceSelector")
+                                }else{
+                                    Toast.makeText(context,"Error", Toast.LENGTH_LONG).show()
+
+                                }
+                            },
                             modifier = Modifier
                                 .padding(top = 30.dp)
                                 .height(50.dp)
                                 .width(300.dp),
                             shape = RoundedCornerShape(50),
-                            colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(R.color.backgroud)),
+                            colors = ButtonDefaults.buttonColors(
+                                backgroundColor = colorResource(
+                                    R.color.backgroud
+                                )
+                            ),
 
                             )
                         {
@@ -134,11 +144,12 @@ fun CreateEvent(navController: NavHostController, viewModel: ViewModelEnterParam
 
                             }
                         }
+
+
                     }
+
                 }
-
             }
-
 
         }
     }

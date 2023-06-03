@@ -28,6 +28,7 @@ import com.example.ticketease.MVVM.Person.Organizer.Register.RegistResultOrg
 import com.example.ticketease.MVVM.Person.Organizer.Register.RegisterStateTextFieldsOrg
 import com.example.ticketease.MVVM.Person.Organizer.Register.ViewModelRegistOrg
 import com.example.ticketease.R
+import com.example.ticketease.Screens.EnterAppByer.checkSymbols
 import kotlinx.coroutines.flow.collect
 import java.util.*
 
@@ -143,15 +144,27 @@ fun RegisterOrg(navController: NavHostController, viewModel: ViewModelRegistOrg 
                 Button(
                     onClick = {
                         if (viewModel.repeatPassword.value == state.password) {
-                            if (!viewModel.flag) {
-                                viewModel.register(RegisterStateTextFieldsOrg.RegisterOrganizer)
-                                navController.navigate("PersonalOrg")
-                                viewModel.flag = false
-                            } else {
-                                throw RuntimeException("") // TODO Change this
+                            if (checkSymbols(state.name) and checkSymbols(state.surname) and android.util.Patterns.PHONE.matcher(
+                                    state.mobile
+                                ).matches()
+                            ) {
+                                if (!viewModel.flag) {
+                                    viewModel.register(RegisterStateTextFieldsOrg.RegisterOrganizer)
+                                    navController.navigate("PersonalOrg")
+                                    viewModel.flag = false
+                                } else {
+                                    navController.navigate("UncorrectTextOrg")
+                                    Toast.makeText(context,"Error",Toast.LENGTH_LONG).show()
+                                }
+                            }else{
+                                navController.navigate("UncorrectTextOrg")
+                                Toast.makeText(context,"Error",Toast.LENGTH_LONG).show()
+
                             }
                         }
                         else {
+                            navController.navigate("UncorrectTextOrg")
+
                             Toast.makeText(context,"Error",Toast.LENGTH_LONG).show()
                         }
                               },

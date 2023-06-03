@@ -107,14 +107,7 @@ fun PersonalCorrectInformation(navController: NavHostController, viewModel: View
                         onValueChange = { viewModel.update(UpdateBuyerStateTextFields.Name(it)) },
                         placeholder = { Text(text = "Имя") },
                         modifier = Modifier
-                            .padding(5.dp).clickable(){
-                                val locale = Locale("ru")
-                                Locale.setDefault(locale)
-                                val resources = context.resources
-                                val configuration = resources.configuration
-                                configuration.locale = locale
-                                resources.updateConfiguration(configuration, resources.displayMetrics)
-                            }
+                            .padding(5.dp)
 
                     )
                     TextField(
