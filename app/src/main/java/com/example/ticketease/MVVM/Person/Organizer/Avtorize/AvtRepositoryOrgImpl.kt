@@ -15,7 +15,7 @@ class AvtRepositoryOrgImpl (private val api : BuyerRetrofitAPI,
     override suspend fun avtorizeOrg(organize: OrganizerRequest): AvtResultOrg<Unit> {
         return try {
             val response = api.avtorizeOrg(organize)
-            prefs.edit().putString("organize", Gson().toJson(response)).apply()
+            prefs.edit().putString("organizer", Gson().toJson(response)).apply()
             prefs.edit().putString("token", response.token).apply()
 
             AvtResultOrg.Avtorized()

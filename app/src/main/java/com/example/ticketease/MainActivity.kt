@@ -15,13 +15,13 @@ import com.example.ticketease.Screens.EnterAppByer.*
 import com.example.ticketease.Screens.EnterOrg.AvtorizeOrg
 import com.example.ticketease.Screens.EnterOrg.EnterPageOrg
 import com.example.ticketease.Screens.EnterOrg.RegisterOrg
-import com.example.ticketease.Screens.Errors.ErrorNoLogin
+import com.example.ticketease.Screens.Errors.*
 import com.example.ticketease.Screens.HelloPages.*
 import com.example.ticketease.Screens.NAUser.CartNAUser
 import com.example.ticketease.Screens.NAUser.CatalogNAUser
 import com.example.ticketease.Screens.NAUser.PersonalNAUSer
 import com.example.ticketease.Screens.NAUser.PrefarenceNAUSer
-import com.example.ticketease.Screens.Organizer.PersonalOrg
+import com.example.ticketease.Screens.Organizer.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,7 +41,7 @@ class MainActivity : ComponentActivity()  {
 @Composable
 fun ScreenView(){
    val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "HelloPage4"){
+    NavHost(navController = navController, startDestination = "HelloPage5"){
         composable("RegisterBuyer"){ RegisterBuyer(navController) }
         composable("RegisterOrg"){ RegisterOrg(navController) }
 
@@ -68,6 +68,22 @@ fun ScreenView(){
         composable("CatalogNAUser"){ CatalogNAUser(navController) }
         composable("PersonalNAUSer"){ PersonalNAUSer(navController) }
         composable("PrefarenceNAUSer"){ PrefarenceNAUSer(navController) }
+        composable("PersonalCorrectInformation"){ PersonalCorrectInformation(navController) }
+        composable("CitySelector"){ CitySelector(navController) }
+        composable("CitySelectorOrg"){ CitySelector(navController) }
+
+        composable("PersonalCorrectInformationOrg"){ PersonalCorrectInformationOrg(navController) }
+
+        composable("CannotFindUserBuyer"){ CannotFindUserBuyer(navController) }
+        composable("CannotFindUserOrg"){ CannotFindUserOrg(navController) }
+        composable("UncorrectTextBuyer"){ UncorrectTextBuyer (navController) }
+        composable("UncorrectTextOrg"){ UncorrectTextOrg (navController) }
+        composable("ConnectToManager"){ ConnectToManager (navController) }
+        composable("PlaceSelector"){ PlaceSelector (navController) }
+        composable("TimeSelector"){ TimeSelector (navController) }
+        composable("CreateEvent"){ CreateEvent (navController) }
+
+
     }
 }
 

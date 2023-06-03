@@ -41,20 +41,15 @@ fun RegisterOrg(navController: NavHostController, viewModel: ViewModelRegistOrg 
             when (res){
                 is RegistResultOrg.Registered -> {
                     navController.navigate("Personal")
+
+                   // navController.navigate("ConnectToManager")
                 }
                 is RegistResultOrg.Unregistered -> {
-                    Toast.makeText(
-                        context,
-                        "login isn't unique",
-                        Toast.LENGTH_LONG
-                    ).show()
+                   navController.navigate("UncorrectTextOrg")
                 }
                 is RegistResultOrg.UnknownError -> {
-                    Toast.makeText(
-                        context,
-                        "An unknown error occurred",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    navController.navigate("UncorrectTextOrg")
+
                 }
             }
         }
@@ -72,7 +67,7 @@ fun RegisterOrg(navController: NavHostController, viewModel: ViewModelRegistOrg 
                 contentAlignment = Alignment.TopCenter
             ) {
                 Column(  modifier = Modifier.padding(50.dp)) {
-                    Text("Регистрациz", fontSize = 35.sp, color = Color.White)
+                    Text("Регистрация", fontSize = 35.sp, color = Color.White)
 
                 }
             }

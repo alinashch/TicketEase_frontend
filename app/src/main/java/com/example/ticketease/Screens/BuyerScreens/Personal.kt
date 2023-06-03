@@ -57,7 +57,7 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
 
 
                         Button(
-                            onClick = {  },
+                            onClick = { navController.navigate("PersonalCorrectInformation") },
                             modifier = Modifier
                                 .padding(top = 15.dp)
                                 .height(95.dp)
@@ -75,7 +75,7 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                                         contentDescription = "image",
                                         modifier = Modifier
                                             .size(29.dp, 29.dp)
-                                            .offset(235.dp, 25.dp),
+                                            .offset(205.dp, 25.dp),
                                         contentScale = ContentScale.Crop
                                     )
                                     Row(
@@ -120,8 +120,8 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                                         modifier = Modifier
                                             .size(25.dp, 25.dp)
                                             .clickable{
-
-                                            },
+                                                      navController.navigate("CitySelector")
+                                                      },
                                         contentScale = ContentScale.Crop,
 
                                         )
@@ -139,7 +139,7 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                         ) {
 
                             Button(
-                                onClick = {  },
+                                onClick = {navController.navigate("HelloPage5")  },
                                 modifier = Modifier
                                     .height(50.dp)
                                     .offset(0.dp, 45.dp)
@@ -160,7 +160,12 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                                 }
                             }
                         }
+                        Box(modifier = Modifier
+                            .padding(top = 15.dp)
+                            .height(185.dp)
+                            .width(450.dp)){
 
+                        }
 
                         Box(
                             modifier = Modifier
@@ -183,7 +188,7 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                                         contentScale = ContentScale.Crop
                                     )
                                     Text(
-                                        text = "Каталог ",
+                                        text = "Каталог",
                                         fontSize = 10.sp,
                                         modifier = Modifier.padding(23.dp, 5.dp)
                                     )

@@ -17,7 +17,7 @@ data class OrganizerResponse(
 
     @JsonProperty("token")
 
-    var token: String    )
+    var token: String )
 @Serializable
 data class OrganizerWithoutPswd(
     @JsonProperty("name")
@@ -27,14 +27,20 @@ data class OrganizerWithoutPswd(
     @JsonProperty("email")
     var email: String="",
     @JsonProperty("mobile")
-    var mobile: String = "",
+    var mobile: String? = null,
     @JsonProperty("status")
-    var status: StatusOrganizer? =null,
+    var status: StatusOrganizer = StatusOrganizer.CONSIDERATION,
     @JsonProperty("token")
     var token: String=""
     )
 @Serializable
-data class OrganizerUpdateCity(val token: String, val city : Cities)
+data class OrganizerUpdateCity(
+    @JsonProperty("token")
+    val token: String="",
+    @JsonProperty("city")
+
+    val city : Cities?= null
+    )
 
 
 @Serializable

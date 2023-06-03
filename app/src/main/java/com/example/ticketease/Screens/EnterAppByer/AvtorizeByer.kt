@@ -38,11 +38,11 @@ fun AvtorizeByer(navController: NavHostController, viewModel: ViewModelAvtBuyer 
                     navController.navigate("Personal")
                 }
                 is AvtResult.IncorrectPassword -> {
-                    navController.navigate("ErrorNoLogin")
+                    navController.navigate("UncorrectTextBuyer")
 
                 }
                 is AvtResult.UnknownLogin -> {
-                    navController.navigate("ErrorNoLogin")
+                    navController.navigate("CannotFindUserBuyer")
                 }
             }
         }
@@ -92,21 +92,7 @@ fun AvtorizeByer(navController: NavHostController, viewModel: ViewModelAvtBuyer 
                             .padding(5.dp)
                         ,
                     )
-                    Button(
-                        onClick = { },
-                        modifier = Modifier
-                            .padding(top = 20.dp)
-                            .height(50.dp)
-                            .width(150.dp),
 
-                        colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(R.color.white)),
-                    )
-                    {
-                        Column {
-                            Text("Забыли пароль", fontSize = 10.sp, color = Color.Black)
-
-                        }
-                    }
 
                     Box(modifier = Modifier.padding(top = 200.dp)) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
