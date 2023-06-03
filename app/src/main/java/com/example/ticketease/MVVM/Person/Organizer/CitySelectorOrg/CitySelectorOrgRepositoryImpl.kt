@@ -10,8 +10,8 @@ class CitySelectorOrgRepositoryImpl (
     private val api : BuyerRetrofitAPI,
     private val prefs : SharedPreferences
 ) : CitySelectorOrgRepository {
-    override suspend fun update(buyer: OrganizerUpdateCity?): Boolean {
+    override suspend fun update(organizer: OrganizerUpdateCity?): Boolean {
 
-        return api.organizersUpdateCity(buyer)
+        return api.organizersUpdateCity(organizer)
     }
 }

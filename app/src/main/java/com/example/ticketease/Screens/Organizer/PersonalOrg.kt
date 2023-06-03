@@ -140,6 +140,7 @@ fun PersonalOrg(navController: NavHostController, viewModel: ViewModelPersonalOr
 
                                 }
 
+
                                 Box(
                                     contentAlignment = Alignment.Center,
                                     modifier = Modifier.padding(50.dp)
@@ -147,7 +148,7 @@ fun PersonalOrg(navController: NavHostController, viewModel: ViewModelPersonalOr
 
                                     Button(
                                         onClick = {
-                                            navController.navigate("EnterPageByer")
+                                            navController.navigate("HelloPage5")
                                         },
                                         modifier = Modifier
                                             .height(50.dp)
@@ -170,17 +171,19 @@ fun PersonalOrg(navController: NavHostController, viewModel: ViewModelPersonalOr
                                     }
                                 }
 
-                                Box(modifier = Modifier
-                                    .padding(top = 15.dp)
-                                    .height(185.dp)
-                                    .width(450.dp)){
+                                Box(
+                                    modifier = Modifier
+                                        .padding(top = 15.dp)
+                                        .height(305.dp)
+                                        .width(450.dp)
+                                ) {
 
                                 }
                                 Box(
                                     modifier = Modifier
                                         .background(color = colorResource(R.color.white))
                                         .fillMaxWidth()
-                                        .offset(-15.dp, 225.dp)
+                                        .offset(0.dp, 50.dp)
                                         .height(70.dp), contentAlignment = Alignment.BottomCenter
                                 ) {
                                     Row() {
@@ -190,9 +193,9 @@ fun PersonalOrg(navController: NavHostController, viewModel: ViewModelPersonalOr
                                                 contentDescription = "image",
                                                 modifier = Modifier
                                                     .size(40.dp, 40.dp)
-                                                    .offset(125.dp, -5.dp)
+                                                    .offset(105.dp, -5.dp)
                                                     .clickable() {
-                                                        //navController.navigate(NavigationItem.CreateEvent.route)
+                                                        navController.navigate("CreateEvent")
                                                     },
                                                 contentScale = ContentScale.Crop
                                             )
@@ -202,7 +205,7 @@ fun PersonalOrg(navController: NavHostController, viewModel: ViewModelPersonalOr
                                                 modifier = Modifier.padding(85.dp, 5.dp)
                                             )
                                         }
-                                        Box(modifier = Modifier.size(30.dp, 30.dp)) {
+                                        Box(modifier = Modifier.size(15.dp, 30.dp)) {
 
                                         }
                                         Column() {
@@ -223,13 +226,20 @@ fun PersonalOrg(navController: NavHostController, viewModel: ViewModelPersonalOr
                                                 modifier = Modifier.offset(-40.dp, 10.dp)
                                             )
                                         }
+                                        Box(modifier = Modifier.size(30.dp, 30.dp)) {
+
+                                        }
+                                        Box(modifier = Modifier.size(30.dp, 30.dp)) {
+
+                                        }
 
                                     }
                                 }
                             }
-                        }
-                    }
 
+                        }
+
+                    }
                 }
             }
         }

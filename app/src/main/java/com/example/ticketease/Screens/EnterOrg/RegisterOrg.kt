@@ -67,7 +67,7 @@ fun RegisterOrg(navController: NavHostController, viewModel: ViewModelRegistOrg 
                 contentAlignment = Alignment.TopCenter
             ) {
                 Column(  modifier = Modifier.padding(50.dp)) {
-                    Text("Регистрациz", fontSize = 35.sp, color = Color.White)
+                    Text("Регистрация", fontSize = 35.sp, color = Color.White)
 
                 }
             }

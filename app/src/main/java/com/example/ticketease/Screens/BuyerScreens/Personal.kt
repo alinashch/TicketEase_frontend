@@ -139,7 +139,7 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                         ) {
 
                             Button(
-                                onClick = {navController.navigate("EnterPageBuyer")  },
+                                onClick = {navController.navigate("HelloPage5")  },
                                 modifier = Modifier
                                     .height(50.dp)
                                     .offset(0.dp, 45.dp)

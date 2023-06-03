@@ -11,6 +11,7 @@ import com.example.ticketease.DataClasses.Person.OrganizerWithoutPswd
 import com.example.ticketease.MVVM.Person.Buyer.UpdateBuyer.UpdateBuyerRepository
 import com.example.ticketease.MVVM.Person.Buyer.UpdateBuyer.UpdateBuyerResult
 import com.example.ticketease.MVVM.Person.Buyer.UpdateBuyer.UpdateBuyerStateTextFields
+import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -23,7 +24,7 @@ class ViewModelUpdateOrg @Inject constructor(
     private val prefs : SharedPreferences
 ) : ViewModel() {
     var flag : Boolean = false
-    var state by mutableStateOf(OrganizerWithoutPswd())
+    var state by mutableStateOf(Gson().fromJson(prefs.getString("organizer",null)!!, OrganizerWithoutPswd::class.java))
 
     private val resultChannel = Channel<UpdateOrgResult<Unit>>()
     val Results = resultChannel.receiveAsFlow()

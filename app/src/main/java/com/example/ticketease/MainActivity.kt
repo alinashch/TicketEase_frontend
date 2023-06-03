@@ -21,8 +21,7 @@ import com.example.ticketease.Screens.NAUser.CartNAUser
 import com.example.ticketease.Screens.NAUser.CatalogNAUser
 import com.example.ticketease.Screens.NAUser.PersonalNAUSer
 import com.example.ticketease.Screens.NAUser.PrefarenceNAUSer
-import com.example.ticketease.Screens.Organizer.PersonalCorrectInformationOrg
-import com.example.ticketease.Screens.Organizer.PersonalOrg
+import com.example.ticketease.Screens.Organizer.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -80,6 +79,9 @@ fun ScreenView(){
         composable("UncorrectTextBuyer"){ UncorrectTextBuyer (navController) }
         composable("UncorrectTextOrg"){ UncorrectTextOrg (navController) }
         composable("ConnectToManager"){ ConnectToManager (navController) }
+        composable("PlaceSelector"){ PlaceSelector (navController) }
+        composable("TimeSelector"){ TimeSelector (navController) }
+        composable("CreateEvent"){ CreateEvent (navController) }
 
 
     }

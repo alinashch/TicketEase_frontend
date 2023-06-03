@@ -12,6 +12,7 @@ import com.example.ticketease.DataClasses.Person.Cities
 import com.example.ticketease.MVVM.Person.Buyer.Register.RegistResult
 import com.example.ticketease.MVVM.Person.Buyer.Register.RegisterRepository
 import com.example.ticketease.MVVM.Person.Buyer.Register.RegisterStateTextFields
+import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -24,7 +25,7 @@ class ViewModelUpdateBuyer @Inject constructor(
     private val prefs : SharedPreferences
 ) : ViewModel() {
     var flag : Boolean = false
-    var state by mutableStateOf(BuyerWithoutPswd())
+    var state by mutableStateOf(Gson().fromJson(prefs.getString("buyer",null)!!,BuyerWithoutPswd::class.java))
 
     private val resultChannel = Channel<UpdateBuyerResult<Unit>>()
     val Results = resultChannel.receiveAsFlow()

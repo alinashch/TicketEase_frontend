@@ -3,6 +3,8 @@ package com.example.ticketease.MVVM.Person.Buyer
 import android.app.Application
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import com.example.ticketease.MVVM.Event.getEvents.getEventsRepository
+import com.example.ticketease.MVVM.Event.getEvents.getEventsRepositoryImpl
 
 
 import com.example.ticketease.MVVM.Person.Buyer.Avtorize.AvtRepository
@@ -129,5 +131,12 @@ fun provideSharedPref(app : Application) : SharedPreferences{
     fun providePersonalUpdateOrg(api : BuyerRetrofitAPI,prefs : SharedPreferences) : UpdateOrgRepository {
         return UpdateOrgRepositoryImpl(api, prefs)
     }
+
+    @Provides
+    @Singleton
+    fun provideGetPlace(api : BuyerRetrofitAPI,prefs : SharedPreferences) : getEventsRepository {
+        return getEventsRepositoryImpl(api, prefs)
+    }
+
 }
 

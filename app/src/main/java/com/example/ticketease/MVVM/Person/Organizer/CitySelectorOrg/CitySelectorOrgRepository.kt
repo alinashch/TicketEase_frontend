@@ -4,6 +4,6 @@ import com.example.ticketease.DataClasses.Person.BuyerUpdateCity
 import com.example.ticketease.DataClasses.Person.OrganizerUpdateCity
 
 interface CitySelectorOrgRepository {
-    suspend fun update(buyer: OrganizerUpdateCity?): Boolean
+    suspend fun update(organizer: OrganizerUpdateCity?): Boolean
 
 }

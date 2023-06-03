@@ -56,6 +56,7 @@ import kotlinx.coroutines.flow.onEach
                         .wrapContentSize(Alignment.Center)
                         .verticalScroll(rememberScrollState())
                 ) {
+                    /*
                     val list = viewModel.getCatalog()
                     list.onEach {
                         list.
@@ -70,6 +71,8 @@ import kotlinx.coroutines.flow.onEach
                             )
                         }
 
+
+                     */
 
                 }
 
