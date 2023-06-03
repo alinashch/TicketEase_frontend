@@ -29,7 +29,7 @@ class SelectTimeViewModel  @Inject constructor(
         //var state by mutableStateOf(Gson().fromJson(prefs.getString("event",null)!!, EventDTO::class.java))
         //prefs.edit().putString("place", placeState.value)!!.apply()
         prefs.edit().putString("placeTimeDTO", Gson().toJson(placeTime.date)).apply()
-
+        prefs.edit().putString("PlaceId", placeTime.id.toString()).apply()
     }
 
 }

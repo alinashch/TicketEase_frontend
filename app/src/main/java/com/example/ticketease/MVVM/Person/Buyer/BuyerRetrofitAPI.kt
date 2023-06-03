@@ -4,6 +4,7 @@ import com.example.ticketease.DataClasses.Catalog
 import com.example.ticketease.DataClasses.Event.EventDTO
 import com.example.ticketease.DataClasses.Person.*
 import com.example.ticketease.DataClasses.PlaceTime.PlaceDTO
+import com.example.ticketease.DataClasses.PlaceTime.PlaceId
 import com.example.ticketease.DataClasses.PlaceTime.PlaceTimeDTO
 import com.example.ticketease.DataClasses.PlaceTime.PlaceType
 import retrofit2.http.Body
@@ -53,4 +54,7 @@ interface BuyerRetrofitAPI {
 
  @POST("/places/type")
  suspend fun getPlace(@Body dataModel: PlaceType?):  List<PlaceDTO>
+
+ @POST("/places/type")
+ suspend fun getTime(@Body dataModel: String?):  List<PlaceTimeDTO>
 }

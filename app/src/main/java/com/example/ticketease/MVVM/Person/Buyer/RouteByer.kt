@@ -5,6 +5,8 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.example.ticketease.MVVM.Event.getEvents.getEventsRepository
 import com.example.ticketease.MVVM.Event.getEvents.getEventsRepositoryImpl
+import com.example.ticketease.MVVM.Event.getTime.getTimeRepository
+import com.example.ticketease.MVVM.Event.getTime.getTimeRepositoryImpl
 
 
 import com.example.ticketease.MVVM.Person.Buyer.Avtorize.AvtRepository
@@ -137,6 +139,10 @@ fun provideSharedPref(app : Application) : SharedPreferences{
     fun provideGetPlace(api : BuyerRetrofitAPI,prefs : SharedPreferences) : getEventsRepository {
         return getEventsRepositoryImpl(api, prefs)
     }
-
+    @Provides
+    @Singleton
+    fun provideGetTime(api : BuyerRetrofitAPI,prefs : SharedPreferences) : getTimeRepository {
+        return getTimeRepositoryImpl(api, prefs)
+    }
 }
 
