@@ -57,5 +57,12 @@ data class BuyerUpdateCity(
     @JsonProperty ("token")
     var token: String="",
     @JsonProperty("city")
-    var city: Cities? =null
+    var city: String? =""
     )
+
+
+@Serializable
+data class BuyerId(
+    @JsonProperty("id")
+    val id : Long
+)

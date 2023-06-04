@@ -24,7 +24,7 @@ interface BuyerRetrofitAPI {
    suspend  fun buyerByToken(@Body dataModel: BuyerResponse?):  BuyerWithoutPswd
 
     @PUT("/buyers/update")
-    suspend  fun buyerUpdate(@Body dataModel: BuyerWithoutPswd?):  BuyerWithoutPswd
+    suspend  fun buyerUpdate(@Body dataModel: BuyerWithoutPswd):  BuyerWithoutPswd
 
     @POST("/buyers/updateCity")
      suspend  fun buyerUpdateCity(@Body dataModel: BuyerUpdateCity?):Boolean
@@ -35,16 +35,11 @@ interface BuyerRetrofitAPI {
 
 
     @PUT("/organizers/signIn")
-    suspend fun avtorizeOrg(@Body dataModel: OrganizerRequest?): OrganizerWithoutPswd
+    suspend fun avtorizeOrg(@Body dataModel: OrganizerRequest): OrganizerWithoutPswd
 
 
     @POST("/organizers/token")
     suspend fun orgByToken(@Body dataModel: OrganizerResponse?):  OrganizerWithoutPswd
-
-
- @POST("/room/catalog")
- suspend fun getAllEvents(@Body city : City): List<Catalog>
-
 
 
  @POST("/organizers/updateCity")
@@ -61,4 +56,14 @@ interface BuyerRetrofitAPI {
 
  @POST("/placeTimes/select/placeId")
  suspend fun getTime(@Body dataModel: PlaceId?):  List<PlaceTimeDTO>
+
+
+ @POST("/room/catalog")
+ suspend fun getAllEvents(@Body city : City): List<Catalog>
+
+ @POST("/room/preferences")
+ suspend fun preferencesRoom(@Body buyer :  BuyerUpdateCity): List<Catalog>
+
+ @POST("tickets/buyerId")
+ suspend fun selectEventByBuyer(@Body buyer : BuyerId) : List<Long>
 }

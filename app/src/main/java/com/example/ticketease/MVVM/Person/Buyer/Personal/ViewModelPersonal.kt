@@ -21,23 +21,33 @@ import javax.inject.Inject
 @HiltViewModel
 class ViewModelPersonal @Inject constructor(
     private val repository: PersonalRepository,
-
     private val prefs : SharedPreferences
 ) : ViewModel() {
-    private val resultChannel = Channel<List<Catalog>>()
-    val registerResults = resultChannel.receiveAsFlow()
-
     var city  = prefs.getString("city","Moscow")
     var state by mutableStateOf(Gson().fromJson(prefs.getString("buyer",null)!!,BuyerWithoutPswd::class.java))
-
 
     fun createCatalog() {
         viewModelScope.launch {
             val result = repository.getAllEvents()
             prefs.edit().putString("catalog",Gson().toJson(result)).apply()
-
         }
     }
+    fun createPreference(){
+        viewModelScope.launch {
+            val listTicket = repository.selectEventByBuyer().size
+            val listPrefs = if (listTicket<5){
+                repository.getAllEvents()
+            }else {
+                repository.preferencesRoom()
+            }
+            prefs.edit().putString("preferences",Gson().toJson(listPrefs)).apply()
+        }
+    }
+
+    fun CartPerson(){
+        viewModelScope.launch {
+            // val listTickets = repository
+        }
+    }
+
 }
-
-

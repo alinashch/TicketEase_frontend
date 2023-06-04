@@ -60,7 +60,7 @@ fun AvtorizeByer(navController: NavHostController, viewModel: ViewModelAvtBuyer 
                 contentAlignment = Alignment.TopCenter
             ) {
                 Column(  modifier = Modifier.padding(50.dp)) {
-                    Text("Авторизация", fontSize = 35.sp, color = Color.White)
+                    Text("Авторизация ", fontSize = 35.sp, color = Color.White)
 
                 }
             }

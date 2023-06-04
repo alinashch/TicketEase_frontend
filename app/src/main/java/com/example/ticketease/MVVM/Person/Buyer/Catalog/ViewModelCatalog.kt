@@ -18,11 +18,22 @@ import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
-
 class ViewModelCatalog @Inject constructor(
-    private val prefs: SharedPreferences,
+    private val repository: CatalogRepository,
+    private val prefs: SharedPreferences
 ) : ViewModel() {
-    var state = mutableStateOf(
-        Gson().fromJson(prefs.getString("catalog",null)!!,
+    var state = mutableStateOf(Gson().fromJson(prefs.getString("catalog",null)!!,
         Array<Catalog>::class.java).toList())
+
+    fun createPreference(){
+        viewModelScope.launch {
+            val listTicket = repository.selectEventByBuyer().size
+            val listPrefs = if (listTicket<5){
+                repository.getAllEvents()
+            }else {
+                repository.preferencesRoom()
+            }
+            prefs.edit().putString("preferences",Gson().toJson(listPrefs)).apply()
+        }
+    }
 }

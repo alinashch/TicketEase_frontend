@@ -7,4 +7,7 @@ import kotlinx.coroutines.flow.Flow
 interface CatalogRepository {
     suspend fun getAllEvents(): List<Catalog>
 
+    suspend fun preferencesRoom() : List<Catalog>
+
+    suspend fun selectEventByBuyer() : List<Long>
 }
