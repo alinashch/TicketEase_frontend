@@ -23,13 +23,14 @@ class ViewModelCatalog @Inject constructor(
 
     private val prefs : SharedPreferences
 ) : ViewModel() {
+    /*
     var city = prefs.getString("city", null)!!
     val searchResult = MutableLiveData<Pair<Int, ApiResult<List<Catalog>>>>()
 
 
     fun getCatalog() {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.catalog(city).collect { result ->
+            repository.catalog(cityByString(city)).collect { result ->
                 searchResult.postValue(Pair(3, result))
             }
         }
@@ -54,4 +55,6 @@ class ViewModelCatalog @Inject constructor(
             else -> Cities.Moscow
         }
     }
+
+     */
 }

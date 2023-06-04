@@ -40,10 +40,12 @@ interface BuyerRetrofitAPI {
 
     @POST("/organizers/token")
     suspend fun orgByToken(@Body dataModel: OrganizerResponse?):  OrganizerWithoutPswd
-
+/*
 
  @POST("/room/catalog")
- suspend fun catalog(@Body city: String?): Call<CatalogResponce>
+ suspend fun catalog(@Body city: Cities?): Call<CatalogResponce>
+
+ */
 
  @POST("/organizers/updateCity")
  suspend  fun organizersUpdateCity(@Body dataModel: OrganizerUpdateCity?):Boolean
