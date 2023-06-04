@@ -28,7 +28,7 @@ import com.example.ticketease.R
 @Composable
 fun PlaceSelector(navController: NavHostController, viewModel: ViewModelRepositoryGetEvents = hiltViewModel()) {
 
-    val list = viewModel.get
+    val list = viewModel.state.value
     Box(
         modifier = Modifier
             .background(color = colorResource(R.color.white))
@@ -49,6 +49,7 @@ fun PlaceSelector(navController: NavHostController, viewModel: ViewModelReposito
             for (l in list) {
                 ListItemPlace(
                     name = l.name,
+                    id= l.id!!,
                     nCapacity = l.capacity.toString(),
                     navController
                 )
@@ -59,7 +60,7 @@ fun PlaceSelector(navController: NavHostController, viewModel: ViewModelReposito
 
 
 @Composable
-fun ListItemPlace(name: String, nCapacity: String, navController: NavHostController, viewModel: SelectPlaceViewModel = hiltViewModel()) {
+fun ListItemPlace(name: String, id:Long,  nCapacity: String, navController: NavHostController, viewModel: SelectPlaceViewModel = hiltViewModel()) {
 
     val isButtonPressed = remember { mutableStateOf(false) }
     Box(contentAlignment = Alignment.Center) {
@@ -67,6 +68,9 @@ fun ListItemPlace(name: String, nCapacity: String, navController: NavHostControl
             onClick = {
                 isButtonPressed.value = !isButtonPressed.value
                 viewModel.place(SelectPlace.Place(name))
+                viewModel.place(SelectPlace.Id(id))
+                viewModel.place(SelectPlace.selectPlace)
+                viewModel.getTime()
                 navController.navigate("TimeSelector")
             },
             modifier = Modifier

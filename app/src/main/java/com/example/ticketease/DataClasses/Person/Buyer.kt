@@ -38,6 +38,8 @@ data class Buyer(
 
 @Serializable
 data class BuyerWithoutPswd(
+    @JsonProperty("id")
+    var id: Long ,
     @JsonProperty("name")
     var name : String="",
     @JsonProperty("surname")

@@ -102,7 +102,7 @@ fun AvtorizeByer(navController: NavHostController, viewModel: ViewModelAvtBuyer 
                                     if(state.login!="" && state.password!="") {
                                         if (!viewModel.flag) {
                                                 viewModel.avtorize(AvtStateTextFields.AvtBuyer)
-                                                navController.navigate("Catalog")
+                                                navController.navigate("Personal")
                                             viewModel.flag = false
                                         } else {
                                             navController.navigate("ErrorNoLogin")

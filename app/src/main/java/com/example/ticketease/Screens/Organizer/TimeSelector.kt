@@ -20,6 +20,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.ticketease.MVVM.Event.SelectPlace.SelectPlace
 import com.example.ticketease.MVVM.Event.SelectPlace.SelectPlaceViewModel
+import com.example.ticketease.MVVM.Event.SelectTime.SelectTime
 import com.example.ticketease.MVVM.Event.SelectTime.SelectTimeViewModel
 import com.example.ticketease.MVVM.Event.getEvents.ViewModelRepositoryGetEvents
 import com.example.ticketease.MVVM.Event.getTime.ViewModelgetTimeRepository
@@ -27,7 +28,7 @@ import com.example.ticketease.R
 
 @Composable
 fun TimeSelector(navController: NavHostController, viewModel: ViewModelgetTimeRepository = hiltViewModel()) {
-    val list = viewModel.get
+    val list = viewModel.state.value
     Box(
         modifier = Modifier
             .background(color = colorResource(R.color.white))
@@ -39,7 +40,7 @@ fun TimeSelector(navController: NavHostController, viewModel: ViewModelgetTimeRe
         {
             for (l in list) {
                 ListItemTime(
-                    time = l.date,
+                    time = l.date.toString(),
                     navController
                 )
             }
@@ -55,8 +56,8 @@ fun ListItemTime(time:String, navController: NavHostController,  viewModel: Sele
         Button(
             onClick = {
                 isButtonPressed.value = !isButtonPressed.value
-                viewModel.place(SelectPlace.Place(time))
-                //navController.navigate(NavigationItem.SuccessfulEvent.route)
+                viewModel.place(SelectTime.Time(time))
+                navController.navigate("SuccessfulEvent")
             },
             modifier = Modifier.padding(top = 20.dp).height(50.dp).width(300.dp)
                 .offset(y = 0.dp, x = 0.dp),

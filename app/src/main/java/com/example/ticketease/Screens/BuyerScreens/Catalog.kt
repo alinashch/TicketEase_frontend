@@ -1,5 +1,7 @@
 package com.example.ticketease.Screens.EnterAppByer
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,11 +25,12 @@ import com.example.ticketease.MVVM.Person.Buyer.CitySelector.ViewModelCitySelect
 import com.example.ticketease.MVVM.Person.Buyer.Personal.ViewModelPersonal
 import com.example.ticketease.R
 import kotlinx.coroutines.flow.onEach
+import java.time.Instant
 
-
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
- fun Catalog(navController: NavHostController, viewModel: ViewModelCatalog = hiltViewModel()) {
-    var searchQuery by remember { mutableStateOf("") }
+fun Catalog(navController: NavHostController, viewModel: ViewModelCatalog = hiltViewModel()) {
+    val state = viewModel.state.value
     Column() {
         Box(
 
@@ -56,10 +59,18 @@ import kotlinx.coroutines.flow.onEach
                         .wrapContentSize(Alignment.Center)
                         .verticalScroll(rememberScrollState())
                 ) {
-
-                    val list = viewModel.getCatalog()
-                    list.hashCode()
+                    for (event in state){
+                        ListItem(
+                            name = event.name,
+                            location = event.location,
+                            date =  Instant.ofEpochMilli(event.date),
+                            cost = event.price,
+                            ID = R.drawable.vkz
+                        )
+                    }
                 }
+
+
 
                 Box(
                     modifier = Modifier
@@ -72,9 +83,12 @@ import kotlinx.coroutines.flow.onEach
                             Image(
                                 painterResource(id = R.drawable.bar1),
                                 contentDescription = "image",
-                                modifier = Modifier.size(29.dp, 29.dp).offset(25.dp, -5.dp).clickable(){
-                                    //navController.navigate(NavigationItem.Catalog.route)
-                                }
+                                modifier = Modifier
+                                    .size(29.dp, 29.dp)
+                                    .offset(25.dp, -5.dp)
+                                    .clickable() {
+                                        //navController.navigate(NavigationItem.Catalog.route)
+                                    }
                                 ,
                                 contentScale = ContentScale.Crop
                             )
@@ -90,9 +104,12 @@ import kotlinx.coroutines.flow.onEach
                             Image(
                                 painterResource(id = R.drawable.dscds),
                                 contentDescription = "image",
-                                modifier = Modifier.size(35.dp, 35.dp).offset(-7.dp, -7.dp).clickable(){
-                                    //navController.navigate(NavigationItem.Prefarence.route) // TODO change this
-                                }
+                                modifier = Modifier
+                                    .size(35.dp, 35.dp)
+                                    .offset(-7.dp, -7.dp)
+                                    .clickable() {
+                                        //navController.navigate(NavigationItem.Prefarence.route) // TODO change this
+                                    }
                                 ,
                                 contentScale = ContentScale.Crop
                             )
@@ -105,9 +122,12 @@ import kotlinx.coroutines.flow.onEach
                             Image(
                                 painterResource(id = R.drawable.shopcart),
                                 contentDescription = "image",
-                                modifier = Modifier.size(30.dp, 30.dp).offset(-25.dp, -5.dp).clickable(){
-                                   // navController.navigate(NavigationItem.Cart.route) // TODO change this
-                                }
+                                modifier = Modifier
+                                    .size(30.dp, 30.dp)
+                                    .offset(-25.dp, -5.dp)
+                                    .clickable() {
+                                        // navController.navigate(NavigationItem.Cart.route) // TODO change this
+                                    }
                                 ,
                                 contentScale = ContentScale.Crop
                             )
@@ -120,9 +140,12 @@ import kotlinx.coroutines.flow.onEach
                             Image(
                                 painterResource(id = R.drawable.avatar),
                                 contentDescription = "image",
-                                modifier = Modifier.size(31.dp, 31.dp).offset(-15.dp, -5.dp).clickable{
-                                    navController.navigate("Personal")
-                                }
+                                modifier = Modifier
+                                    .size(31.dp, 31.dp)
+                                    .offset(-15.dp, -5.dp)
+                                    .clickable {
+                                        navController.navigate("Personal")
+                                    }
                                 ,
                                 contentScale = ContentScale.Crop
                             )
@@ -134,13 +157,10 @@ import kotlinx.coroutines.flow.onEach
         }
     }
 }
-@Composable
-fun CatalogScreenPreview(navController: NavHostController) {
-    Catalog(navController)
-}
+
 
 @Composable
-fun ListItem(cost:String, location:String, date:String, name:String,  ID: Int){
+fun ListItem(cost:Double, location:String, date: Instant, name:String, ID: Int){
     var isLiked by remember { mutableStateOf(false) }
 
     Card(modifier = Modifier
@@ -169,7 +189,9 @@ fun ListItem(cost:String, location:String, date:String, name:String,  ID: Int){
                     Image(
                         painterResource(id = ID),
                         contentDescription = "image",
-                        modifier = Modifier.size(250.dp, 230.dp).offset(65.dp, 10.dp),
+                        modifier = Modifier
+                            .size(250.dp, 230.dp)
+                            .offset(65.dp, 10.dp),
                         contentScale = ContentScale.Crop,
                     )
                     Column() {
@@ -207,7 +229,9 @@ fun ListItem(cost:String, location:String, date:String, name:String,  ID: Int){
                     Image(
                         painterResource(id = R.drawable.free_icon_ruble_1868089),
                         contentDescription = "image",
-                        modifier = Modifier.size(17.dp, 17.dp).offset(15.dp, 22.dp),
+                        modifier = Modifier
+                            .size(17.dp, 17.dp)
+                            .offset(15.dp, 22.dp),
                         contentScale = ContentScale.Crop
                     )
                     Text(
@@ -223,7 +247,9 @@ fun ListItem(cost:String, location:String, date:String, name:String,  ID: Int){
                     Image(
                         painterResource(id = R.drawable.free_icon_place_711170),
                         contentDescription = "image",
-                        modifier = Modifier.size(17.dp, 17.dp).offset(15.dp, 22.dp),
+                        modifier = Modifier
+                            .size(17.dp, 17.dp)
+                            .offset(15.dp, 22.dp),
                         contentScale = ContentScale.Crop
                     )
                     Text(
@@ -236,7 +262,9 @@ fun ListItem(cost:String, location:String, date:String, name:String,  ID: Int){
                     Image(
                         painterResource(id = R.drawable.free_icon_dates_4253987),
                         contentDescription = "image",
-                        modifier = Modifier.size(17.dp, 17.dp).offset(15.dp, 22.dp),
+                        modifier = Modifier
+                            .size(17.dp, 17.dp)
+                            .offset(15.dp, 22.dp),
                         contentScale = ContentScale.Crop
                     )
                     Text(

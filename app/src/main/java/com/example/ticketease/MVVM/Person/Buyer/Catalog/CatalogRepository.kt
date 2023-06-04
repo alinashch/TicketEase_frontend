@@ -5,6 +5,6 @@ import com.example.ticketease.DataClasses.Person.Cities
 import kotlinx.coroutines.flow.Flow
 
 interface CatalogRepository {
-   // suspend fun catalog(city: Cities?): Flow<ApiResult<List<Catalog>>>
+    suspend fun getAllEvents(): List<Catalog>
 
 }

@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ticketease.DataClasses.Catalog
 import com.example.ticketease.DataClasses.Person.BuyerResponse
 import com.example.ticketease.DataClasses.Person.BuyerWithoutPswd
 import com.example.ticketease.MVVM.Person.Buyer.Register.RegisterRepository
@@ -19,10 +20,24 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ViewModelPersonal @Inject constructor(
+    private val repository: PersonalRepository,
+
     private val prefs : SharedPreferences
 ) : ViewModel() {
+    private val resultChannel = Channel<List<Catalog>>()
+    val registerResults = resultChannel.receiveAsFlow()
+
     var city  = prefs.getString("city","Moscow")
     var state by mutableStateOf(Gson().fromJson(prefs.getString("buyer",null)!!,BuyerWithoutPswd::class.java))
+
+
+    fun createCatalog() {
+        viewModelScope.launch {
+            val result = repository.getAllEvents()
+            prefs.edit().putString("catalog",Gson().toJson(result)).apply()
+
+        }
+    }
 }
 
 

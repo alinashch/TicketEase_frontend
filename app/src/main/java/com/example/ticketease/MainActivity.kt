@@ -1,8 +1,10 @@
 package com.example.ticketease
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,6 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity()  {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -38,6 +41,7 @@ class MainActivity : ComponentActivity()  {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ScreenView(){
    val navController = rememberNavController()
@@ -82,6 +86,7 @@ fun ScreenView(){
         composable("PlaceSelector"){ PlaceSelector (navController) }
         composable("TimeSelector"){ TimeSelector (navController) }
         composable("CreateEvent"){ CreateEvent (navController) }
+        composable("SuccessfulEvent"){ SuccessfulEvent (navController) }
 
 
     }

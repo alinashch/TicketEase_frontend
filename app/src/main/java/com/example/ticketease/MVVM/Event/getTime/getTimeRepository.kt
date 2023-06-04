@@ -6,6 +6,6 @@ import com.example.ticketease.DataClasses.PlaceTime.PlaceTimeDTO
 import com.example.ticketease.DataClasses.PlaceTime.PlaceType
 
 interface getTimeRepository {
-    suspend fun get(place: String?): List<PlaceTimeDTO>
+    suspend fun get(place: PlaceId?): List<PlaceTimeDTO>
 
 }

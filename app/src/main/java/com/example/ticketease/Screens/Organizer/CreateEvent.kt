@@ -111,6 +111,7 @@ fun CreateEvent(navController: NavHostController, viewModel: ViewModelEnterParam
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Button(
                             onClick = {
+                                /*
                                 if (checkSymbols(state.name) and checkSymbols(state.genre!!) and checkSymbols(
                                         state.type!!
                                     ) and checkSymbols(
@@ -124,6 +125,10 @@ fun CreateEvent(navController: NavHostController, viewModel: ViewModelEnterParam
                                     Toast.makeText(context,"Error", Toast.LENGTH_LONG).show()
 
                                 }
+
+                                 */
+                                viewModel.enter(EnterParamStateTextFields.Enter)
+                                navController.navigate("PlaceSelector")
                             },
                             modifier = Modifier
                                 .padding(top = 30.dp)
