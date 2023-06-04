@@ -21,6 +21,7 @@ class AvtRepositoryImpl (private val api : BuyerRetrofitAPI,
             prefs.edit().putString("buyer", Gson().toJson(response)).apply()
             prefs.edit().putString("token", response.token).apply()
 
+
             AvtResult.Avtorized()
         } catch (e: HttpException) {
             if (e.code() == 401) AvtResult.IncorrectPassword() else

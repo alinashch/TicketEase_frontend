@@ -36,14 +36,14 @@ fun AvtorizeOrg(navController: NavHostController, viewModel: ViewModelAvtOrg = h
                 res ->
             when (res){
                 is AvtResultOrg.Avtorized -> {
-                    navController.navigate("Personal")
+                    navController.navigate("PersonalOrg")
                 }
                 is AvtResultOrg.IncorrectPassword -> {
-                    navController.navigate("ErrorNoLogin")
+                    navController.navigate("UncorrectTextOrg")
 
                 }
                 is AvtResultOrg.UnknownLogin -> {
-                    navController.navigate("ErrorNoLogin")
+                    navController.navigate("CannotFindUserOrg")
                 }
             }
         }
@@ -68,7 +68,6 @@ fun AvtorizeOrg(navController: NavHostController, viewModel: ViewModelAvtOrg = h
             Column(modifier = Modifier.size(500.dp, 600.dp),horizontalAlignment = Alignment.CenterHorizontally)
             {
 
-
                 TextField(
                     value = state.login,
                     onValueChange = {viewModel.avtorize(AvtStateTextFieldsOrg.Login(it))},
@@ -86,23 +85,7 @@ fun AvtorizeOrg(navController: NavHostController, viewModel: ViewModelAvtOrg = h
                         .padding(5.dp)
                     ,
                 )
-                Button(
-                    onClick = {
-                        //navController.navigate(NavigationItem.RecoveryPasswordOrg.route)
-                        },
-                    modifier = Modifier
-                        .padding(top = 20.dp)
-                        .height(50.dp)
-                        .width(150.dp),
 
-                    colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(R.color.white)),
-                    )
-                {
-                    Column {
-                        Text("Забыли пароль", fontSize = 10.sp, color = Color.Black)
-
-                    }
-                }
                 Button(
                     onClick = {
                         navController.navigate("PersonalOrg")

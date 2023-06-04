@@ -53,7 +53,7 @@ data class BuyerWithoutPswd(
 @Serializable
 data class BuyerUpdateCity(
     @JsonProperty ("token")
-    val token: String="",
+    var token: String="",
     @JsonProperty("city")
-    val city: Cities? =null
+    var city: Cities? =null
     )

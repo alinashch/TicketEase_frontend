@@ -7,9 +7,6 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,44 +16,35 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.ticketease.DataClasses.Person.Cities
-import com.example.ticketease.MVVM.HelloPagesPut.putCity
+import com.example.ticketease.DataClasses.Person.Role
+import com.example.ticketease.MVVM.HelloPages.HelloPage7ChooseCity
+import com.example.ticketease.MVVM.HelloPages.HelloPage7ViewModel
 import com.example.ticketease.R
-var city = Cities.Moscow
 @Composable
-fun HelloPage7(navController: NavHostController, c: putCity = hiltViewModel()) {
-    val selectedCity = rememberSaveable { mutableStateOf(Cities.Voronezh) }
-    val isButtonPressedVrn = remember { mutableStateOf(false) }
-    val isButtonPressedSpb = remember { mutableStateOf(false) }
-    val isButtonPressedMsc = remember { mutableStateOf(false) }
+fun HelloPage7(navController: NavHostController, viewModel: HelloPage7ViewModel = hiltViewModel()) {
     Box(
-
         modifier = Modifier
             .background(color = colorResource(R.color.backgroud))
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Column(modifier= Modifier.size(300.dp, 900.dp))
+        Column(modifier = Modifier.size(300.dp, 900.dp))
         {
             Box(contentAlignment = Alignment.Center) {
 
                 Button(
                     onClick = {
-                        selectedCity.value = Cities.Voronezh
-                        isButtonPressedVrn.value = !isButtonPressedVrn.value
-                        role.name
-
-                        c.put(Cities.Voronezh)
-                        city=Cities.Voronezh
-                        toNextPage(navController)
-
-                    },
-                    modifier = Modifier.padding(top = 100.dp).height(50.dp).width(300.dp).offset(y = 270.dp, x = 0.dp),
+                        viewModel.city(HelloPage7ChooseCity.City(Cities.Voronezh))
+                        viewModel.city(HelloPage7ChooseCity.SaveCity)
+                        if (viewModel.roleState == Role.BUYER.toString())
+                            navController.navigate("EnterPageByer") else if(viewModel.roleState == Role.ORGANIZER.toString())
+                            navController.navigate("EnterPageOrg")                    },
+                    modifier = Modifier.padding(top = 100.dp).height(50.dp).width(300.dp)
+                        .offset(y = 270.dp, x = 0.dp),
                     shape = RoundedCornerShape(50),
                     colors = ButtonDefaults.buttonColors(
-                        backgroundColor = if (isButtonPressedVrn.value) colorResource(R.color.find) else colorResource(R.color.white)
-                    ),
-
-                    )
+                        backgroundColor = colorResource(R.color.white)
+                    ))
                 {
 
                     Column {
@@ -68,19 +56,17 @@ fun HelloPage7(navController: NavHostController, c: putCity = hiltViewModel()) {
             Box(contentAlignment = Alignment.Center) {
                 Button(
                     onClick = {
-                        selectedCity.value = Cities.Moscow
-                        isButtonPressedMsc.value = !isButtonPressedMsc.value
-                        c.put(Cities.Moscow)
-                        city=Cities.Moscow
-                        toNextPage(navController)
-                    },
-                    modifier = Modifier.padding(top = 10.dp).height(50.dp).width(300.dp).offset(y = 270.dp, x = 0.dp),
+                        viewModel.city(HelloPage7ChooseCity.City(Cities.Moscow))
+                        viewModel.city(HelloPage7ChooseCity.SaveCity)
+                        if (viewModel.roleState == Role.BUYER.toString())
+                            navController.navigate("EnterPageByer") else
+                            navController.navigate("EnterPageOrg")                    },
+                    modifier = Modifier.padding(top = 10.dp).height(50.dp).width(300.dp)
+                        .offset(y = 270.dp, x = 0.dp),
                     shape = RoundedCornerShape(50),
                     colors = ButtonDefaults.buttonColors(
-                        backgroundColor = if (isButtonPressedMsc.value) colorResource(R.color.find) else colorResource(R.color.white)
-                    ),
-
-                    )
+                        backgroundColor = colorResource(R.color.white)
+                    ))
                 {
 
                     Column {
@@ -92,19 +78,18 @@ fun HelloPage7(navController: NavHostController, c: putCity = hiltViewModel()) {
             Box(contentAlignment = Alignment.Center) {
                 Button(
                     onClick = {
-                        selectedCity.value = Cities.SaintPetersburg
-                        isButtonPressedSpb.value = !isButtonPressedSpb.value
-                        c.put(Cities.SaintPetersburg)
-                        city=Cities.SaintPetersburg
-                        toNextPage(navController)
-                              },
-                    modifier = Modifier.padding(top = 10.dp).height(50.dp).width(300.dp).offset(y = 270.dp, x = 0.dp),
+                        viewModel.city(HelloPage7ChooseCity.City(Cities.SaintPetersburg))
+                        viewModel.city(HelloPage7ChooseCity.SaveCity)
+                        if (viewModel.roleState == Role.BUYER.toString())
+                            navController.navigate("EnterPageByer") else
+                            navController.navigate("EnterPageOrg")
+                    },
+                    modifier = Modifier.padding(top = 10.dp).height(50.dp).width(300.dp)
+                        .offset(y = 270.dp, x = 0.dp),
                     shape = RoundedCornerShape(50),
                     colors = ButtonDefaults.buttonColors(
-                        backgroundColor = if (isButtonPressedSpb.value) colorResource(R.color.find) else colorResource(R.color.white)
-                    ),
-
-                    )
+                        backgroundColor = colorResource(R.color.white)
+                    ))
                 {
 
                     Column {
@@ -116,17 +101,3 @@ fun HelloPage7(navController: NavHostController, c: putCity = hiltViewModel()) {
         }
     }
 }
- private  fun toNextPage(navController: NavHostController){
-     if(role== Role.BUYER){
-         navController.navigate("EnterPageByer")
-     }else if(role ==Role.ORGANIZER){
-         navController.navigate("EnterPageOrg")
-
-     }else if(role==Role.NAUSER){
-         navController.navigate("CatalogNAUser")
-
-     }else{
-         navController.navigate("HelloPage5")
-
-     }
- }

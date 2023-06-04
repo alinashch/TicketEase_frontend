@@ -3,7 +3,6 @@ package com.example.ticketease.MVVM.Person.Buyer.Register
 import android.content.SharedPreferences
 import com.example.ticketease.DataClasses.Person.Buyer
 import com.example.ticketease.MVVM.Person.Buyer.BuyerRetrofitAPI
-import com.example.ticketease.Screens.HelloPages.city
 import com.google.gson.Gson
 import retrofit2.HttpException
 
@@ -17,7 +16,6 @@ class RegisterRepositoryImpl(
 
             prefs.edit().putString("buyer",Gson().toJson(response)).apply()
             prefs.edit().putString("token", response.token).apply()
-            prefs.edit().putString("city", city.toString()).apply()
             RegistResult.Registered()
         }catch (e: HttpException){
             if (e.code() == 401) RegistResult.Unregistered() else

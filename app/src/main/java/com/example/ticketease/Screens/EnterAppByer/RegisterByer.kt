@@ -37,16 +37,13 @@ fun RegisterBuyer(navController: NavHostController, viewModel: ViewModelRegistBu
                     navController.navigate("Personal")
                 }
                 is RegistResult.Unregistered -> {
-                    Toast.makeText(
-                        context,
-                        "login isn't unique",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    navController.navigate("AvtorizeByer")
+
                 }
                 is RegistResult.UnknownError -> {
                     Toast.makeText(
                         context,
-                        "An unknown error occurred",
+                        "UncorrectTextBuyer",
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -81,16 +78,9 @@ fun RegisterBuyer(navController: NavHostController, viewModel: ViewModelRegistBu
                     onValueChange = { viewModel.register(RegisterStateTextFields.Name(it)) },
                     placeholder = { Text(text = "Имя") },
                     modifier = Modifier
-                        .padding(5.dp).clickable(){
-                            val locale = Locale("ru")
-                            Locale.setDefault(locale)
-                            val resources = context.resources
-                            val configuration = resources.configuration
-                            configuration.locale = locale
-                            resources.updateConfiguration(configuration, resources.displayMetrics)
-                        }
+                        .padding(5.dp)
 
-                    )
+                )
                 TextField(
                     value = state.surname,
                     onValueChange = { viewModel.register(RegisterStateTextFields.Surname(it)) },
@@ -145,16 +135,29 @@ fun RegisterBuyer(navController: NavHostController, viewModel: ViewModelRegistBu
 
                 Button(
                     onClick = {
-                        if (viewModel.repeatPassword.value == state.password) {
-                            if (!viewModel.flag) {
-                                viewModel.register(RegisterStateTextFields.RegisterBuyer)
-                                navController.navigate("Catalog")
-                                viewModel.flag = false
-                            } else {
-                                throw RuntimeException("") // TODO Change this
+                        if (viewModel.repeatPassword.value == state.password ) {
+                            if (checkSymbols(state.name) and checkSymbols(state.surname) and android.util.Patterns.PHONE.matcher(
+                                    state.mobile
+                                ).matches()
+                            ) {
+                                if (!viewModel.flag) {
+                                    viewModel.register(RegisterStateTextFields.RegisterBuyer)
+                                    navController.navigate("Catalog")
+                                    viewModel.flag = false
+                                } else {
+                                    navController.navigate("UncorrectTextBuyer")
+                                    Toast.makeText(context,"Error",Toast.LENGTH_LONG).show()
+
+                                }
+                            }else{
+                                navController.navigate("UncorrectTextBuyer")
+                                Toast.makeText(context,"Error",Toast.LENGTH_LONG).show()
+
                             }
                         }
                         else {
+                            navController.navigate("UncorrectTextBuyer")
+
                             Toast.makeText(context,"Error",Toast.LENGTH_LONG).show()
                         }
                     },
@@ -174,6 +177,17 @@ fun RegisterBuyer(navController: NavHostController, viewModel: ViewModelRegistBu
         }
     }
 }
+fun checkSymbols(name: String):Boolean{
+    if(name.contains("[a-z]".toRegex()) or  name.contains("[A-Z]".toRegex()) or name.contains("[а-я]".toRegex()) or  name.contains("[А-Я]".toRegex())){
+        return true
+    }
+    return  false
+}
 
-
+fun checkNum(number: String):Boolean{
+    if(number.contains("[0-9]".toRegex()) ){
+        return true
+    }
+    return  false
+}
 
