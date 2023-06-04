@@ -56,27 +56,10 @@ import kotlinx.coroutines.flow.onEach
                         .wrapContentSize(Alignment.Center)
                         .verticalScroll(rememberScrollState())
                 ) {
-                    /*
+
                     val list = viewModel.getCatalog()
-                    list.onEach {
-                        list.
-                    }
-                    for (l in list){
-                            ListItem(
-                                cost = l.name,
-                                location = l.nameGroup.toString(),
-                                date = l.genre.toString(),
-                                name = l.name,
-                                R.drawable.vkz
-                            )
-                        }
-
-
-                     */
-
+                    list.hashCode()
                 }
-
-
 
                 Box(
                     modifier = Modifier

@@ -1,12 +1,14 @@
 package com.example.ticketease.MVVM.Person.Buyer
 
 import com.example.ticketease.DataClasses.Catalog
+import com.example.ticketease.DataClasses.CatalogResponce
 import com.example.ticketease.DataClasses.Event.EventDTO
 import com.example.ticketease.DataClasses.Person.*
 import com.example.ticketease.DataClasses.PlaceTime.PlaceDTO
 import com.example.ticketease.DataClasses.PlaceTime.PlaceId
 import com.example.ticketease.DataClasses.PlaceTime.PlaceTimeDTO
 import com.example.ticketease.DataClasses.PlaceTime.PlaceType
+import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.http.PUT
@@ -41,7 +43,7 @@ interface BuyerRetrofitAPI {
 
 
  @POST("/room/catalog")
- suspend fun catalog(@Body city: String?): List<Catalog>
+ suspend fun catalog(@Body city: String?): Call<CatalogResponce>
 
  @POST("/organizers/updateCity")
  suspend  fun organizersUpdateCity(@Body dataModel: OrganizerUpdateCity?):Boolean

@@ -1,10 +1,12 @@
 package com.example.ticketease.MVVM.Person.Buyer.Catalog
 
 import android.content.SharedPreferences
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ticketease.DataClasses.Catalog
 import com.example.ticketease.DataClasses.Person.Cities
+import com.example.ticketease.MVVM.ApiResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -21,33 +23,35 @@ class ViewModelCatalog @Inject constructor(
 
     private val prefs : SharedPreferences
 ) : ViewModel() {
-    var city  = prefs.getString("city",null)!!
+    var city = prefs.getString("city", null)!!
+    val searchResult = MutableLiveData<Pair<Int, ApiResult<List<Catalog>>>>()
 
 
-    fun getCatalog(): Flow<List<Catalog>> {
-        return flow {
-            val data = repository.catalog(city)
-            emit(data)
-        }.flowOn(Dispatchers.IO)
+    fun getCatalog() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.catalog(city).collect { result ->
+                searchResult.postValue(Pair(3, result))
+            }
+        }
+
+        //val catalog= runBlocking { repository.catalog(city) }
+
     }
 
-    //val catalog= runBlocking { repository.catalog(city) }
+    private fun cityByString(cityString: String): Cities {
 
-}
+        return when (cityString) {
+            "Moscow" -> {
+                Cities.Moscow
+            }
+            "Voronezh" -> {
+                Cities.Voronezh
+            }
+            "SaintPetersburg" -> {
+                Cities.SaintPetersburg
 
-private fun cityByString(cityString:String): Cities{
-
-    return when (cityString) {
-        "Moscow" -> {
-            Cities.Moscow
+            }
+            else -> Cities.Moscow
         }
-        "Voronezh" -> {
-            Cities.Voronezh
-        }
-        "SaintPetersburg" -> {
-            Cities.SaintPetersburg
-
-        }
-        else -> Cities.Moscow
     }
 }
