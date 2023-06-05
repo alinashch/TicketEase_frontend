@@ -24,11 +24,11 @@ import com.example.ticketease.MVVM.Event.SelectPlace.SelectPlaceViewModel
 import com.example.ticketease.MVVM.Event.getEvents.ViewModelRepositoryGetEvents
 import com.example.ticketease.MVVM.HelloPages.HelloPage5ViewModel
 import com.example.ticketease.R
+import com.example.ticketease.getPlace
 
 @Composable
 fun PlaceSelector(navController: NavHostController, viewModel: ViewModelRepositoryGetEvents = hiltViewModel()) {
-
-    val list = viewModel.state.value
+    val list = getPlace(viewModel.city)
     Box(
         modifier = Modifier
             .background(color = colorResource(R.color.white))
@@ -89,7 +89,7 @@ fun ListItemPlace(name: String, id:Long,  nCapacity: String, navController: NavH
             Column {
                 Text(name, fontSize = 18.sp, color = Color.White)
 
-                Text("Количество" + nCapacity, fontSize = 18.sp, color = Color.White)
+                Text("Количество  " + nCapacity, fontSize = 18.sp, color = Color.White)
 
             }
         }

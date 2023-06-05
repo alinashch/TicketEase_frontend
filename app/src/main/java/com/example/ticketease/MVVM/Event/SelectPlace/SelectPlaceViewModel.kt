@@ -48,7 +48,6 @@ class SelectPlaceViewModel @Inject constructor(
             val id=prefs.getString("id", null)!!.toLong()
 
             val result = repository.get(PlaceId(id))
-            result.size
             prefs.edit().putString("placeTimeDTO",Gson().toJson(result)).apply()
 
         }

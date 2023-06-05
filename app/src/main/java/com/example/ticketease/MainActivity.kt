@@ -12,7 +12,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.testcompose.CartPersonal
 import com.example.testcompose.Prefarence
+import com.example.testcompose.SuccessfulOrder
 import com.example.testcompose.ui.theme.TestComposeTheme
 import com.example.ticketease.Screens.EnterAppByer.*
 import com.example.ticketease.Screens.EnterOrg.AvtorizeOrg
@@ -90,7 +92,9 @@ fun ScreenView(){
         composable("SuccessfulEvent"){ SuccessfulEvent (navController) }
 
         composable("Prefarance"){ Prefarence(navController)}
+        composable("SuccessfulOrder"){ SuccessfulOrder(navController)}
 
+        composable("CartPersonal"){ CartPersonal(navController)}
     }
 }
 

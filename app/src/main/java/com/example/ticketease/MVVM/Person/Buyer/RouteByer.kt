@@ -13,6 +13,8 @@ import com.example.ticketease.MVVM.Event.getTime.getTimeRepositoryImpl
 
 import com.example.ticketease.MVVM.Person.Buyer.Avtorize.AvtRepository
 import com.example.ticketease.MVVM.Person.Buyer.Avtorize.AvtRepositoryImpl
+import com.example.ticketease.MVVM.Person.Buyer.CartPersonal.CartPersonalRepository
+import com.example.ticketease.MVVM.Person.Buyer.CartPersonal.CartPersonalRepositoryImpl
 import com.example.ticketease.MVVM.Person.Buyer.Catalog.CatalogRepository
 import com.example.ticketease.MVVM.Person.Buyer.Catalog.CatalogRepositoryImpl
 import com.example.ticketease.MVVM.Person.Buyer.CitySelector.CitySelector
@@ -154,6 +156,12 @@ fun provideSharedPref(app : Application) : SharedPreferences{
         prefs: SharedPreferences
     ): PreferencesRepository {
         return PreferencesRepositoryImpl(api, prefs)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCartPersonalRepository(api : BuyerRetrofitAPI,prefs : SharedPreferences) : CartPersonalRepository {
+        return CartPersonalRepositoryImpl(api, prefs)
     }
 }
 

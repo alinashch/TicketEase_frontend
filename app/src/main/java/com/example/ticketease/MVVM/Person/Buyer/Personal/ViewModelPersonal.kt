@@ -24,11 +24,12 @@ class ViewModelPersonal @Inject constructor(
     private val prefs : SharedPreferences
 ) : ViewModel() {
     var city  = prefs.getString("city","Moscow")
-    var state by mutableStateOf(Gson().fromJson(prefs.getString("buyer",null)!!,BuyerWithoutPswd::class.java))
+    var state = mutableStateOf(Gson().fromJson(prefs.getString("buyer","")!!,BuyerWithoutPswd::class.java))
 
     fun createCatalog() {
         viewModelScope.launch {
             val result = repository.getAllEvents()
+
             prefs.edit().putString("catalog",Gson().toJson(result)).apply()
         }
     }

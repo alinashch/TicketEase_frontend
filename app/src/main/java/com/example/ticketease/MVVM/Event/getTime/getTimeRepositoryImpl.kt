@@ -14,7 +14,6 @@ class getTimeRepositoryImpl (private val api : BuyerRetrofitAPI,
 ): getTimeRepository {
     override suspend fun get(place: PlaceId?): List<PlaceTimeDTO> {
         val responce=api.getTime(place)
-        prefs.edit().putString("placeTimeDTO", Gson().toJson(responce)).apply()
 
         return responce
     }

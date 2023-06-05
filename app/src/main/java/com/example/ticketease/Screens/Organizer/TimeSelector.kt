@@ -2,7 +2,9 @@ package com.example.ticketease.Screens.Organizer
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
@@ -25,10 +27,12 @@ import com.example.ticketease.MVVM.Event.SelectTime.SelectTimeViewModel
 import com.example.ticketease.MVVM.Event.getEvents.ViewModelRepositoryGetEvents
 import com.example.ticketease.MVVM.Event.getTime.ViewModelgetTimeRepository
 import com.example.ticketease.R
+import com.example.ticketease.getTime
 
 @Composable
 fun TimeSelector(navController: NavHostController, viewModel: ViewModelgetTimeRepository = hiltViewModel()) {
-    val list = viewModel.state.value
+
+    val list = getTime()
     Box(
         modifier = Modifier
             .background(color = colorResource(R.color.white))
@@ -36,7 +40,10 @@ fun TimeSelector(navController: NavHostController, viewModel: ViewModelgetTimeRe
         contentAlignment = Alignment.Center
     ) {
 
-        Column(modifier = Modifier.size(300.dp, 900.dp))
+        Column(modifier = Modifier.size(300.dp, 900.dp).verticalScroll(
+            rememberScrollState()
+        )
+        )
         {
             for (l in list) {
                 ListItemTime(
