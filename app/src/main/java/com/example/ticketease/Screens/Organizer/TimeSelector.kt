@@ -30,7 +30,7 @@ import com.example.ticketease.R
 import com.example.ticketease.getTime
 
 @Composable
-fun TimeSelector(navController: NavHostController, viewModel: ViewModelgetTimeRepository = hiltViewModel()) {
+fun TimeSelector(navController: NavHostController) {
 
     val list = getTime()
     Box(

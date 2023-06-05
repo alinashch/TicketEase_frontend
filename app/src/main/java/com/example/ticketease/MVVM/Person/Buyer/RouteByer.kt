@@ -5,6 +5,8 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.example.ticketease.MVVM.Event.Preferences.PreferencesRepository
 import com.example.ticketease.MVVM.Event.Preferences.PreferencesRepositoryImpl
+import com.example.ticketease.MVVM.Event.create.CreateRepository
+import com.example.ticketease.MVVM.Event.create.CreateRepositoryImpl
 import com.example.ticketease.MVVM.Event.getEvents.getEventsRepository
 import com.example.ticketease.MVVM.Event.getEvents.getEventsRepositoryImpl
 import com.example.ticketease.MVVM.Event.getTime.getTimeRepository
@@ -162,6 +164,11 @@ fun provideSharedPref(app : Application) : SharedPreferences{
     @Singleton
     fun provideCartPersonalRepository(api : BuyerRetrofitAPI,prefs : SharedPreferences) : CartPersonalRepository {
         return CartPersonalRepositoryImpl(api, prefs)
+    }
+    @Provides
+    @Singleton
+    fun provideCreate(api : BuyerRetrofitAPI,prefs : SharedPreferences) : CreateRepository {
+        return CreateRepositoryImpl(api, prefs)
     }
 }
 

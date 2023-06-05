@@ -9,6 +9,7 @@ import com.example.ticketease.DataClasses.PlaceTime.PlaceDTO
 import com.example.ticketease.DataClasses.PlaceTime.PlaceId
 import com.example.ticketease.DataClasses.PlaceTime.PlaceTimeDTO
 import com.example.ticketease.DataClasses.PlaceTime.PlaceType
+import com.example.ticketease.DataClasses.Ticket.TicketCountWithPrice
 import com.example.ticketease.DataClasses.Ticket.TicketDTO
 import retrofit2.Call
 import retrofit2.http.Body
@@ -77,4 +78,7 @@ interface BuyerRetrofitAPI {
 
  @PUT("/tickets/update")
  suspend fun updateTicket(@Body ticket : TicketDTO) : TicketDTO
+
+ @POST("/room/createTicketListOrganizer")
+ suspend fun createRoom(@Body ticket: TicketCountWithPrice)
 }
