@@ -17,8 +17,7 @@ class AvtRepositoryImpl (private val api : BuyerRetrofitAPI,
 ): AvtRepository {
     override suspend fun avtorize(buyer: BuyerRequest): AvtResult<Unit> {
         return try {
-            val response = api.avtorize(BuyerRequest(buyer.login,buyer.password))
-
+            val response = api.avtorize(buyer)
             prefs.edit().putString("buyer", Gson().toJson(response)).apply()
             prefs.edit().putString("token", response.token).apply()
 

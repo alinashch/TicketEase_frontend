@@ -39,7 +39,7 @@ data class Buyer(
 @Serializable
 data class BuyerWithoutPswd(
     @JsonProperty("id")
-    var id: Long ,
+    var id: Long,
     @JsonProperty("name")
     var name : String="",
     @JsonProperty("surname")
@@ -57,9 +57,8 @@ data class BuyerUpdateCity(
     @JsonProperty ("token")
     var token: String="",
     @JsonProperty("city")
-    var city: String? =""
+    var city: String =""
     )
-
 
 @Serializable
 data class BuyerId(

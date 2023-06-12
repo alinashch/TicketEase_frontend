@@ -88,6 +88,8 @@ fun AvtorizeOrg(navController: NavHostController, viewModel: ViewModelAvtOrg = h
 
                 Button(
                     onClick = {
+                        viewModel.avtorize(AvtStateTextFieldsOrg.AvtOrg)
+
                         navController.navigate("PersonalOrg")
                               },
                     modifier = Modifier
@@ -103,7 +105,6 @@ fun AvtorizeOrg(navController: NavHostController, viewModel: ViewModelAvtOrg = h
 
                     Column {
                         Text("Войти", fontSize = 15.sp, color = Color.White)
-
                     }
                 }
             }

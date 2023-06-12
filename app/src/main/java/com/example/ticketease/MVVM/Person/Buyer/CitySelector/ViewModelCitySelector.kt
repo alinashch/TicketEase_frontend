@@ -6,16 +6,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ticketease.DataClasses.Person.BuyerRequest
 import com.example.ticketease.DataClasses.Person.BuyerUpdateCity
 import com.example.ticketease.DataClasses.Person.Cities
-import com.example.ticketease.DataClasses.Person.Role
-import com.example.ticketease.MVVM.HelloPages.HelloPage7ChooseCity
-import com.example.ticketease.MVVM.Person.Buyer.Avtorize.AvtRepository
-import com.example.ticketease.MVVM.Person.Buyer.Avtorize.AvtResult
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -50,7 +43,7 @@ class ViewModelCitySelector@Inject constructor(
         }
     }
 
-    fun cityByString(cityString:String): Cities {
+     fun cityByString(cityString:String): Cities {
         if( cityString=="Moscow"){
             return Cities.Moscow
         }else if(cityString=="Voronezh"){

@@ -3,14 +3,12 @@ package com.example.ticketease.MVVM.Person.Buyer
 import com.example.ticketease.DataClasses.Catalog
 import com.example.ticketease.DataClasses.CatalogResponce
 import com.example.ticketease.DataClasses.Event.EventDTO
-import com.example.ticketease.DataClasses.Event.EventId
 import com.example.ticketease.DataClasses.Person.*
 import com.example.ticketease.DataClasses.PlaceTime.PlaceDTO
 import com.example.ticketease.DataClasses.PlaceTime.PlaceId
 import com.example.ticketease.DataClasses.PlaceTime.PlaceTimeDTO
 import com.example.ticketease.DataClasses.PlaceTime.PlaceType
-import com.example.ticketease.DataClasses.Ticket.TicketCountWithPrice
-import com.example.ticketease.DataClasses.Ticket.TicketDTO
+import com.ticketEase.backend.DataClasses.Place.TypeOfPlace
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -27,7 +25,7 @@ interface BuyerRetrofitAPI {
    suspend  fun buyerByToken(@Body dataModel: BuyerResponse?):  BuyerWithoutPswd
 
     @PUT("/buyers/update")
-    suspend  fun buyerUpdate(@Body dataModel: BuyerWithoutPswd):  BuyerWithoutPswd
+    suspend  fun buyerUpdate(@Body dataModel: BuyerWithoutPswd?):  BuyerWithoutPswd
 
     @POST("/buyers/updateCity")
      suspend  fun buyerUpdateCity(@Body dataModel: BuyerUpdateCity?):Boolean
@@ -44,7 +42,6 @@ interface BuyerRetrofitAPI {
     @POST("/organizers/token")
     suspend fun orgByToken(@Body dataModel: OrganizerResponse?):  OrganizerWithoutPswd
 
-
  @POST("/organizers/updateCity")
  suspend  fun organizersUpdateCity(@Body dataModel: OrganizerUpdateCity?):Boolean
 
@@ -55,11 +52,10 @@ interface BuyerRetrofitAPI {
  suspend fun enterEventsParam(@Body dataModel: EventDTO?):  EventDTO
 
  @POST("/places/type")
- suspend fun getPlace(@Body dataModel: PlaceType?):  List<PlaceDTO>
+ suspend fun getPlace(@Body dataModel: String):  List<PlaceDTO>
 
- @POST("/placeTimes/select/placeId")
- suspend fun getTime(@Body dataModel: PlaceId?):  List<PlaceTimeDTO>
-
+ @POST("/places/type")
+ suspend fun getTime(@Body dataModel: String?):  List<PlaceTimeDTO>
 
  @POST("/room/catalog")
  suspend fun getAllEvents(@Body city : City): List<Catalog>
@@ -70,15 +66,6 @@ interface BuyerRetrofitAPI {
  @POST("tickets/buyerId")
  suspend fun selectEventByBuyer(@Body buyer : BuyerId) : List<Long>
 
- @POST("tickets/eventId/soldTicket")
- suspend fun countSoldTicket(@Body eventId : EventId) : Long
-
- @POST("/room/ticket")
- suspend fun ticketRoom(@Body eventId: EventId) : Catalog
-
- @PUT("/tickets/update")
- suspend fun updateTicket(@Body ticket : TicketDTO) : TicketDTO
-
- @POST("/room/createTicketListOrganizer")
- suspend fun createRoom(@Body ticket: TicketCountWithPrice)
+ @POST("tickets/buyerId/count")
+ suspend fun selectEventCountByBuyer(@Body buyer : BuyerId) : Long
 }

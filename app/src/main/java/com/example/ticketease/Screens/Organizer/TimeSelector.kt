@@ -2,9 +2,7 @@ package com.example.ticketease.Screens.Organizer
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
@@ -22,17 +20,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.ticketease.MVVM.Event.SelectPlace.SelectPlace
 import com.example.ticketease.MVVM.Event.SelectPlace.SelectPlaceViewModel
-import com.example.ticketease.MVVM.Event.SelectTime.SelectTime
 import com.example.ticketease.MVVM.Event.SelectTime.SelectTimeViewModel
 import com.example.ticketease.MVVM.Event.getEvents.ViewModelRepositoryGetEvents
 import com.example.ticketease.MVVM.Event.getTime.ViewModelgetTimeRepository
 import com.example.ticketease.R
-import com.example.ticketease.getTime
 
 @Composable
-fun TimeSelector(navController: NavHostController) {
-
-    val list = getTime()
+fun TimeSelector(navController: NavHostController, viewModel: ViewModelgetTimeRepository = hiltViewModel()) {
+    val list = viewModel.get
     Box(
         modifier = Modifier
             .background(color = colorResource(R.color.white))
@@ -40,14 +35,11 @@ fun TimeSelector(navController: NavHostController) {
         contentAlignment = Alignment.Center
     ) {
 
-        Column(modifier = Modifier.size(300.dp, 900.dp).verticalScroll(
-            rememberScrollState()
-        )
-        )
+        Column(modifier = Modifier.size(300.dp, 900.dp))
         {
             for (l in list) {
                 ListItemTime(
-                    time = l.date.toString(),
+                    time = l.date,
                     navController
                 )
             }
@@ -63,8 +55,8 @@ fun ListItemTime(time:String, navController: NavHostController,  viewModel: Sele
         Button(
             onClick = {
                 isButtonPressed.value = !isButtonPressed.value
-                viewModel.place(SelectTime.Time(time))
-                navController.navigate("SuccessfulEvent")
+                viewModel.place(SelectPlace.Place(time))
+                //navController.navigate(NavigationItem.SuccessfulEvent.route)
             },
             modifier = Modifier.padding(top = 20.dp).height(50.dp).width(300.dp)
                 .offset(y = 0.dp, x = 0.dp),

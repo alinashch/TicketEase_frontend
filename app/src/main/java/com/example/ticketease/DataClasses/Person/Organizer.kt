@@ -6,22 +6,18 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class OrganizerRequest(
     @JsonProperty("login")
-
     var login: String="",
     @JsonProperty("password")
-
     var password: String=""
     )
 @Serializable
 data class OrganizerResponse(
-
     @JsonProperty("token")
-
     var token: String )
 @Serializable
 data class OrganizerWithoutPswd(
     @JsonProperty("id")
-    var id: Long ,
+    var id: Long,
     @JsonProperty("name")
     var name: String="",
     @JsonProperty("surname")
@@ -40,7 +36,6 @@ data class OrganizerUpdateCity(
     @JsonProperty("token")
     val token: String="",
     @JsonProperty("city")
-
     val city : Cities?= null
     )
 

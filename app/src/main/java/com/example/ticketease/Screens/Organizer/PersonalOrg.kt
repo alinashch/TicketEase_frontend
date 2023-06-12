@@ -195,7 +195,6 @@ fun PersonalOrg(navController: NavHostController, viewModel: ViewModelPersonalOr
                                                     .size(40.dp, 40.dp)
                                                     .offset(105.dp, -5.dp)
                                                     .clickable() {
-                                                        viewModel.createPlace()
                                                         navController.navigate("CreateEvent")
                                                     },
                                                 contentScale = ContentScale.Crop
