@@ -37,8 +37,11 @@ fun HelloPage7(navController: NavHostController, viewModel: HelloPage7ViewModel 
                         viewModel.city(HelloPage7ChooseCity.City(Cities.Voronezh))
                         viewModel.city(HelloPage7ChooseCity.SaveCity)
                         if (viewModel.roleState == Role.BUYER.toString())
-                            navController.navigate("EnterPageByer") else if(viewModel.roleState == Role.ORGANIZER.toString())
-                            navController.navigate("EnterPageOrg")                    },
+                            navController.navigate("CatalogNAUser") else if(viewModel.roleState == Role.ORGANIZER.toString())
+                            navController.navigate("EnterPageOrg")
+
+
+                    },
                     modifier = Modifier.padding(top = 100.dp).height(50.dp).width(300.dp)
                         .offset(y = 270.dp, x = 0.dp),
                     shape = RoundedCornerShape(50),
@@ -59,8 +62,8 @@ fun HelloPage7(navController: NavHostController, viewModel: HelloPage7ViewModel 
                         viewModel.city(HelloPage7ChooseCity.City(Cities.Moscow))
                         viewModel.city(HelloPage7ChooseCity.SaveCity)
                         if (viewModel.roleState == Role.BUYER.toString())
-                            navController.navigate("EnterPageByer") else
-                            navController.navigate("EnterPageOrg")                    },
+                            navController.navigate("CatalogNAUser") else if(viewModel.roleState == Role.ORGANIZER.toString())
+                            navController.navigate("EnterPageOrg")                  },
                     modifier = Modifier.padding(top = 10.dp).height(50.dp).width(300.dp)
                         .offset(y = 270.dp, x = 0.dp),
                     shape = RoundedCornerShape(50),
@@ -81,7 +84,7 @@ fun HelloPage7(navController: NavHostController, viewModel: HelloPage7ViewModel 
                         viewModel.city(HelloPage7ChooseCity.City(Cities.SaintPetersburg))
                         viewModel.city(HelloPage7ChooseCity.SaveCity)
                         if (viewModel.roleState == Role.BUYER.toString())
-                            navController.navigate("EnterPageByer") else
+                            navController.navigate("CatalogNAUser") else if(viewModel.roleState == Role.ORGANIZER.toString())
                             navController.navigate("EnterPageOrg")
                     },
                     modifier = Modifier.padding(top = 10.dp).height(50.dp).width(300.dp)

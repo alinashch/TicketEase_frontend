@@ -24,12 +24,14 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.example.ticketease.MVVM.Event.SuccessfulEvent.ViewModelSuccessfulEvent
 import com.example.ticketease.R
 
 
 @Composable
-fun SuccessfulEvent(navController: NavHostController) {
+fun SuccessfulEvent(navController: NavHostController, viewModel : ViewModelSuccessfulEvent = hiltViewModel()) {
 
     Box(
 
@@ -42,7 +44,9 @@ fun SuccessfulEvent(navController: NavHostController) {
         {
 
             Box(contentAlignment = Alignment.Center) {
-                Column(modifier= Modifier.size(450.dp, 200.dp).offset(y = 120.dp, x = -20.dp)) {
+                Column(modifier= Modifier
+                    .size(450.dp, 200.dp)
+                    .offset(y = 120.dp, x = -20.dp)) {
                     Text(
                         text = "Мероприятие успешно создано!",
                         fontSize = 32.sp,
@@ -55,7 +59,10 @@ fun SuccessfulEvent(navController: NavHostController) {
             Box(contentAlignment = Alignment.Center) {
 
                 Button(
-                    onClick = {navController.navigate("PersonalOrg")},
+                    onClick = {
+                        viewModel.createTickets()
+                        navController.navigate("CreateEvent")
+                              },
                     modifier = Modifier
                         .height(50.dp)
                         .offset(y = 485.dp, x = 65.dp)
@@ -66,15 +73,12 @@ fun SuccessfulEvent(navController: NavHostController) {
 
                     )
                 {
-
                     Column {
                         Text("Далее", fontSize = 25.sp, color = Color.White)
 
                     }
                 }
             }
-
-
         }
     }
 }

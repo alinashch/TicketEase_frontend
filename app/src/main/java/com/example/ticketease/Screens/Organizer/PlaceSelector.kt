@@ -28,9 +28,7 @@ import com.example.ticketease.R
 
 @Composable
 fun PlaceSelector(navController: NavHostController, viewModel: ViewModelRepositoryGetEvents = hiltViewModel()) {
-
-    val list = viewModel.list.observeAsState(initial = listOf())
-
+    val list = viewModel.listPlaces.observeAsState(initial = listOf())
     Box(
         modifier = Modifier
             .background(color = colorResource(R.color.white))
@@ -51,7 +49,7 @@ fun PlaceSelector(navController: NavHostController, viewModel: ViewModelReposito
             for (l in list.value) {
                 ListItemPlace(
                     name = l.name,
-                    nCapacity = l.capacity.toString(),
+                    capacity = l.capacity!!,
                     navController
                 )
             }
@@ -61,14 +59,15 @@ fun PlaceSelector(navController: NavHostController, viewModel: ViewModelReposito
 
 
 @Composable
-fun ListItemPlace(name: String, nCapacity: String, navController: NavHostController, viewModel: SelectPlaceViewModel = hiltViewModel()) {
+fun ListItemPlace(name: String, capacity: Long, navController: NavHostController, viewModel: SelectPlaceViewModel = hiltViewModel()) {
 
     val isButtonPressed = remember { mutableStateOf(false) }
     Box(contentAlignment = Alignment.Center) {
         Button(
             onClick = {
                 isButtonPressed.value = !isButtonPressed.value
-                viewModel.place(SelectPlace.Place(name))
+                viewModel.placeState.capacity = capacity
+                viewModel.place(SelectPlace.selectPlace)
                 navController.navigate("TimeSelector")
             },
             modifier = Modifier
@@ -87,7 +86,7 @@ fun ListItemPlace(name: String, nCapacity: String, navController: NavHostControl
             Column {
                 Text(name, fontSize = 18.sp, color = Color.White)
 
-                Text("Количество" + nCapacity, fontSize = 18.sp, color = Color.White)
+                Text("Количество" + capacity.toString(), fontSize = 18.sp, color = Color.White)
 
             }
         }

@@ -21,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.ticketease.R
-
 @Composable
 fun HelloPage1(navController: NavHostController) {
     Box(

@@ -46,7 +46,7 @@ fun HelloPage5(navController: NavHostController, viewModel: HelloPage5ViewModel 
                             painterResource(id = R.drawable.krest),
                             contentDescription = "image",
                             modifier = Modifier.size(70.dp, 70.dp).clickable{
-                                navController .navigate("HelloPage7")
+                                navController .navigate("HelloPage5")
                             }
 
                         )

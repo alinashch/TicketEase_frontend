@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,13 +18,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.example.ticketease.MVVM.Event.Catalog.ViewModelCatalog
 
 import com.example.ticketease.MVVM.Person.Buyer.Avtorize.AvtResult
 import com.example.ticketease.MVVM.Person.Buyer.Personal.ViewModelPersonal
 import com.example.ticketease.R
+import java.time.Instant
 
 @Composable
- fun CatalogNAUser(navController: NavHostController ) {
+ fun CatalogNAUser(navController: NavHostController, viewModel: ViewModelCatalog = hiltViewModel() ) {
+    val events = viewModel.catalog.observeAsState(initial = listOf())
 
     Column() {
         Box(
@@ -64,214 +68,119 @@ import com.example.ticketease.R
         }
         Column() {
 
-
-
             Box(
                 modifier = Modifier
-                    .background(color = colorResource(R.color.white))
+                    .background(color = colorResource(R.color.white)).fillMaxHeight()
                 ,
                 contentAlignment = Alignment.BottomCenter
             ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(colorResource(id = R.color.white))
-                        .wrapContentSize(Alignment.Center)
-                        .verticalScroll(rememberScrollState())
-                ) {
-                    //val list = viewModel.catalog
-                    var i:Int=0
-                    /*for (l in list){
-                        viewModelTicket.id= l.id!!
-                        val ticket=viewModelTicket.tickets
-                        com.example.ticketease.Screens.EnterAppByer.ListItem(
-                            cost = ticket[i].price.toString(),
-                            location = l.nameGroup.toString(),
-                            date = l.placeTimeId.toString(),
-                            name = l.name,
-                            R.drawable.vkz
-                        )
-                        i++
-                    }*/
+                Box(modifier = Modifier.padding(bottom = 70.dp).fillMaxHeight()) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(colorResource(id = R.color.white))
+                            .wrapContentSize(Alignment.Center)
+                            .verticalScroll(rememberScrollState())
+                    ) {
+                        for (event in events.value)
+                            com.example.testcompose.ListItem(
+                                eventId = event.eventId,
+                                name = event.name,
+                                location = event.location,
+                                date = Instant.ofEpochMilli(event.date),
+                                cost = event.price,
+                                ID = R.drawable.vkz
+                            )
+
+
+                    }
                 }
 
-                    Box(
-                        modifier = Modifier
-                            .background(color = colorResource(R.color.white))
-                            .fillMaxWidth()
-                            .height(60.dp), contentAlignment = Alignment.BottomCenter
-                    ) {
-                        Row() {
-                            Column() {
-                                Image(
-                                    painterResource(id = R.drawable.xkqmspc),
-                                    contentDescription = "image",
-                                    modifier = Modifier.size(30.dp, 30.dp).clickable() {
-                                        // navController.navigate(NavigationItem.CatalogNAUser.route)
-                                    },
-                                    contentScale = ContentScale.Crop
-                                )
-                                Text(text = "Каталог ", fontSize = 10.sp)
-                            }
-                            Box(modifier = Modifier.size(30.dp, 30.dp)) {
+                Box(
+                    modifier = Modifier
+                        .background(color = colorResource(R.color.white))
+                        .fillMaxWidth()
+                        .height(70.dp), contentAlignment = Alignment.BottomCenter
+                ) {
+                    Row {
+                        Column {
+                            Image(
+                                painterResource(id = R.drawable.bar1),
+                                contentDescription = "image",
+                                modifier = Modifier
+                                    .size(29.dp, 29.dp)
+                                    .offset(25.dp, (-5).dp)
+                                    .clickable {
+                                        navController.navigate("CatalogNAUser")
+                                    }
+                                ,
+                                contentScale = ContentScale.Crop
+                            )
+                            Text(text = "Каталог", fontSize = 10.sp, modifier = Modifier.padding(23.dp, 5.dp))
+                        }
+                        Box(modifier = Modifier.size(50.dp, 30.dp)){
 
-                            }
+                        }
 
-                            Box(modifier = Modifier.size(30.dp, 30.dp)) {
+                        Column {
+                            Image(
+                                painterResource(id = R.drawable.dscds),
+                                contentDescription = "image",
+                                modifier = Modifier
+                                    .size(35.dp, 35.dp)
+                                    .offset((-7).dp, (-7).dp)
+                                    .clickable {
+                                        navController.navigate("PreferenceNAUser")
+                                    }
+                                ,
+                                contentScale = ContentScale.Crop
+                            )
+                            Text(text = "Предпочтения", fontSize = 10.sp, modifier = Modifier.offset((-25).dp, 0.dp))
+                        }
+                        Box(modifier = Modifier.size(50.dp, 30.dp)){
 
-                            }
-                            Column() {
-                                Image(
-                                    painterResource(id = R.drawable.dscds),
-                                    contentDescription = "image",
-                                    modifier = Modifier.size(30.dp, 30.dp).clickable() {
-                                        // navController.navigate(NavigationItem.PrefarenceNAUser.route)
-                                    },
-                                    contentScale = ContentScale.Crop
-                                )
-                                Text(text = "Предпочтения ", fontSize = 10.sp)
-                            }
-                            Box(modifier = Modifier.size(30.dp, 30.dp)) {
+                        }
+                        Column {
+                            Image(
+                                painterResource(id = R.drawable.shopcart),
+                                contentDescription = "image",
+                                modifier = Modifier
+                                    .size(30.dp, 30.dp)
+                                    .offset((-25).dp, (-5).dp)
+                                    .clickable {
+                                        navController.navigate("CartNAUser")
+                                    }
+                                ,
+                                contentScale = ContentScale.Crop
+                            )
+                            Text(text = "Корзина", fontSize = 10.sp, modifier = Modifier.offset((-28).dp, 5.dp))
+                        }
+                        Box(modifier = Modifier.size(50.dp, 30.dp)){
 
-                            }
-                            Column() {
-                                Image(
-                                    painterResource(id = R.drawable.free_icon_shopping_cart_481384_bhbaq__1__0phyx),
-                                    contentDescription = "image",
-                                    modifier = Modifier.size(30.dp, 30.dp).clickable() {
-                                        //  navController.navigate(NavigationItem.CartNAUser.route)
-                                    },
-                                    contentScale = ContentScale.Crop
-                                )
-                                Text(text = "Корзина ", fontSize = 10.sp)
-                            }
-                            Box(modifier = Modifier.size(30.dp, 30.dp)) {
-
-                            }
-                            Column() {
-                                Image(
-                                    painterResource(id = R.drawable.avatar),
-                                    contentDescription = "image",
-                                    modifier = Modifier.size(30.dp, 30.dp).clickable() {
+                        }
+                        Column {
+                            Image(
+                                painterResource(id = R.drawable.avatar),
+                                contentDescription = "image",
+                                modifier = Modifier
+                                    .size(31.dp, 31.dp)
+                                    .offset((-15).dp, (-5).dp)
+                                    .clickable {
                                         navController.navigate("PersonalNAUser")
-                                    },
-                                    contentScale = ContentScale.Crop
-                                )
-                                Text(text = "Личный кабинет ", fontSize = 10.sp)
-                            }
+                                    }
+                                ,
+                                contentScale = ContentScale.Crop
+                            )
+                            Text(text = "Личный кабинет", fontSize = 10.sp, modifier = Modifier.offset((-20).dp, (-3).dp))
                         }
                     }
                 }
             }
-
+        }
+    }
+}
 
             @Composable
             fun CatalogNAUserScreenPreview(navController: NavHostController) {
                 CatalogNAUser(navController)
             }
-
-            @Composable
-            fun ListItem(cost: String, location: String, date: String, name: String, ID: Int) {
-                var isLiked by remember { mutableStateOf(false) }
-
-                Card(
-                    modifier = Modifier
-                        .width(400.dp)
-                        .height(380.dp)
-                        .padding(10.dp)
-                ) {
-                    Box(modifier = Modifier.background(color = colorResource(R.color.vgrey))) {
-                        Column() {
-
-                            Row() {
-                                Box(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    contentAlignment = Alignment.TopCenter
-                                ) {
-                                    Text(
-                                        text = name, fontSize = 25.sp
-                                    )
-                                }
-
-                            }
-
-                            Row() {
-                                Image(
-                                    painterResource(id = ID),
-                                    contentDescription = "image",
-                                    modifier = Modifier.size(250.dp, 230.dp).offset(65.dp, 10.dp),
-                                    contentScale = ContentScale.Crop,
-                                )
-                                Column() {
-
-                                    Box(modifier = Modifier.height(120.dp)) {}
-                                    Button(
-                                        onClick = { },
-                                        modifier = Modifier
-                                            .height(40.dp)
-                                            .offset(15.dp, 140.dp)
-                                            .width(120.dp),
-
-                                        colors = ButtonDefaults.buttonColors(
-                                            backgroundColor = colorResource(
-                                                R.color.find
-                                            )
-                                        )
-                                    )
-                                    {
-                                        Text("Купить", fontSize = 15.sp, color = Color.White)
-
-                                    }
-
-                                }
-                            }
-                            Row() {
-                                Image(
-                                    painterResource(id = R.drawable.free_icon_ruble_1868089),
-                                    contentDescription = "image",
-                                    modifier = Modifier.size(17.dp, 17.dp).offset(15.dp, 22.dp),
-                                    contentScale = ContentScale.Crop
-                                )
-                                Text(
-                                    text = "Стоимость",
-                                    modifier = Modifier.offset(20.dp, 20.dp),
-                                    fontSize = 15.sp
-                                )
-                                Box(modifier = Modifier.width(20.dp)) {
-
-                                }
-                            }
-                            Row() {
-                                Image(
-                                    painterResource(id = R.drawable.free_icon_place_711170),
-                                    contentDescription = "image",
-                                    modifier = Modifier.size(17.dp, 17.dp).offset(15.dp, 22.dp),
-                                    contentScale = ContentScale.Crop
-                                )
-                                Text(
-                                    text = "Местоположение",
-                                    modifier = Modifier.offset(20.dp, 20.dp),
-                                    fontSize = 15.sp
-                                )
-                            }
-                            Row() {
-                                Image(
-                                    painterResource(id = R.drawable.free_icon_dates_4253987),
-                                    contentDescription = "image",
-                                    modifier = Modifier.size(17.dp, 17.dp).offset(15.dp, 22.dp),
-                                    contentScale = ContentScale.Crop
-                                )
-                                Text(
-                                    text = "Дата проведения",
-                                    modifier = Modifier.offset(20.dp, 20.dp),
-                                    fontSize = 15.sp
-                                )
-                            }
-
-                        }
-                    }
-                }
-            }
-
-    }
-}

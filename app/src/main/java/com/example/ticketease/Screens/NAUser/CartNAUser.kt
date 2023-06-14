@@ -43,29 +43,26 @@ fun CartNAUser(navController: NavHostController) {
                 modifier = Modifier
                     .background(color = colorResource(R.color.white))
                 ,
-                contentAlignment = Alignment.BottomCenter
             ) {
 
                 Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(colorResource(id = R.color.white))
-                        .wrapContentSize(Alignment.Center)
-                        .verticalScroll(rememberScrollState())
-                ) {
 
+                ) {
 
                     Box(modifier = Modifier
                         .padding(top = 20.dp)
                         .background(colorResource(R.color.find)). height(100.dp).width(400.dp), contentAlignment = Alignment.Center){
-                        Text(text = " Для оплаты билетов нужно авторизоваться \n" +
-                                "или зарегистрироваться",fontSize = 25.sp )
+                        Text(text = " Чтобы добавлять товары в корзину войдите или зарегистрируйтесь!",fontSize = 25.sp )
+
+                    }
+
+                    Box(modifier = Modifier.size(100.dp, 160.dp)){
 
                     }
                     Box(){
                         Row(){
                             Button(
-                                onClick = { },
+                                onClick = {navController.navigate("EnterPageByer")  },
                                 modifier = Modifier
                                     .height(40.dp)
                                     .width(200.dp),
@@ -81,124 +78,93 @@ fun CartNAUser(navController: NavHostController) {
 
                                 }
                             }
-                            Button(
-                                onClick = { },
-                                modifier = Modifier
-                                    .height(40.dp)
-                                    .width(200.dp),
-                                border = BorderStroke(3.dp, Color.White),
-                                shape = RoundedCornerShape(50),
-                                colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(R.color.backgroud)),
 
-                                )
-                            {
-
-                                Column {
-                                    Text("Регистрация", fontSize = 15.sp, color = Color.White)
-
-                                }
-                            }
                         }
                     }
-                    Box(contentAlignment = Alignment.Center) {
-                        Button(
-                            onClick = {},
-                            modifier = Modifier
-                                .padding(top = 10.dp)
-                                .height(50.dp)
-                                .width(200.dp),
-                            border = BorderStroke(3.dp, colorResource(R.color.backgroud)),
-                            shape = RoundedCornerShape(50),
-                            colors = ButtonDefaults.buttonColors(
-                                backgroundColor = colorResource(
-                                    R.color.backgroud
-                                )
-                            ),
 
-                            )
-                        {
+                    Box(modifier = Modifier.size(100.dp, 300.dp)){
 
-                            Column {
-                                Text("Продолжить", fontSize = 25.sp, color = Color.White)
-
-                            }
-                        }
                     }
-                }
 
                 Box(
                     modifier = Modifier
                         .background(color = colorResource(R.color.white))
                         .fillMaxWidth()
-                        .height(60.dp), contentAlignment = Alignment.BottomCenter
+                        .height(70.dp), contentAlignment = Alignment.BottomCenter
                 ) {
-                    Row() {
-                        Column() {
+                    Row {
+                        Column {
                             Image(
-                                painterResource(id = R.drawable.xkqmspc),
+                                painterResource(id = R.drawable.barbl),
                                 contentDescription = "image",
                                 modifier = Modifier
-                                    .size(30.dp, 30.dp)
-                                    .clickable() {
-                                       // navController.navigate(NavigationItem.CatalogNAUser.route)
-                                    },
+                                    .size(29.dp, 29.dp)
+                                    .offset(25.dp, (-5).dp)
+                                    .clickable {
+                                        navController.navigate("CatalogNAUser")
+                                    }
+                                ,
                                 contentScale = ContentScale.Crop
                             )
-                            Text(text = "Каталог ", fontSize = 10.sp)
+                            Text(text = "Каталог", fontSize = 10.sp, modifier = Modifier.padding(23.dp, 5.dp))
                         }
-                        Box(modifier = Modifier.size(30.dp, 30.dp)) {
+                        Box(modifier = Modifier.size(50.dp, 30.dp)){
 
                         }
 
-                        Box(modifier = Modifier.size(30.dp, 30.dp)) {
-
-                        }
-                        Column() {
+                        Column {
                             Image(
                                 painterResource(id = R.drawable.dscds),
                                 contentDescription = "image",
                                 modifier = Modifier
-                                    .size(30.dp, 30.dp)
-                                    .clickable() {
-                                       // navController.navigate(NavigationItem.PrefarenceNAUser.route)
-                                    },
+                                    .size(35.dp, 35.dp)
+                                    .offset((-7).dp, (-7).dp)
+                                    .clickable {
+                                        navController.navigate("PreferenceNAUser")
+                                    }
+                                ,
                                 contentScale = ContentScale.Crop
                             )
-                            Text(text = "Предпочтения ", fontSize = 10.sp)
+                            Text(text = "Предпочтения", fontSize = 10.sp, modifier = Modifier.offset((-25).dp, 0.dp))
                         }
-                        Box(modifier = Modifier.size(30.dp, 30.dp)) {
+                        Box(modifier = Modifier.size(50.dp, 30.dp)){
 
                         }
-                        Column() {
+                        Column {
                             Image(
-                                painterResource(id = R.drawable.free_icon_shopping_cart_481384_bhbaq__1__0phyx),
+                                painterResource(id = R.drawable.shopcart),
                                 contentDescription = "image",
                                 modifier = Modifier
                                     .size(30.dp, 30.dp)
-                                    .clickable() {
-                                       // navController.navigate(NavigationItem.CartNAUser.route)
-                                    },
+                                    .offset((-25).dp, (-5).dp)
+                                    .clickable {
+                                        navController.navigate("CartNAUser")
+                                    }
+                                ,
                                 contentScale = ContentScale.Crop
                             )
-                            Text(text = "Корзина ", fontSize = 10.sp)
+                            Text(text = "Корзина", fontSize = 10.sp, modifier = Modifier.offset((-28).dp, 5.dp))
                         }
-                        Box(modifier = Modifier.size(30.dp, 30.dp)) {
+                        Box(modifier = Modifier.size(50.dp, 30.dp)){
 
                         }
-                        Column() {
+                        Column {
                             Image(
                                 painterResource(id = R.drawable.avatar),
                                 contentDescription = "image",
                                 modifier = Modifier
-                                    .size(30.dp, 30.dp)
-                                    .clickable() {
-                                      //  navController.navigate(NavigationItem.PersonalNAUser.route)
-                                    },
+                                    .size(31.dp, 31.dp)
+                                    .offset((-15).dp, (-5).dp)
+                                    .clickable {
+                                        navController.navigate("PersonalNAUser")
+                                    }
+                                ,
                                 contentScale = ContentScale.Crop
                             )
-                            Text(text = "Личный кабинет ", fontSize = 10.sp)
+                            Text(text = "Личный кабинет", fontSize = 10.sp, modifier = Modifier.offset((-20).dp, (-3).dp))
                         }
                     }
+                }
                 }
             }
         }
@@ -209,4 +175,3 @@ fun CartNAUser(navController: NavHostController) {
 fun CartNAUSerScreenPreview(navController: NavHostController) {
     CartNAUser(navController)
 }
-

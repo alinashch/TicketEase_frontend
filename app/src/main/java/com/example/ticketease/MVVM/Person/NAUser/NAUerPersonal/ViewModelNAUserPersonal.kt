@@ -1,4 +1,4 @@
-package com.example.ticketease.MVVM.Person.NAUser
+package com.example.ticketease.MVVM.Person.NAUser.NAUerPersonal
 
 import android.content.SharedPreferences
 import androidx.compose.runtime.mutableStateOf
@@ -10,15 +10,7 @@ import javax.inject.Inject
 class ViewModelNAUserPersonal @Inject constructor(
     private val prefs : SharedPreferences
 ) : ViewModel() {
-    var cityState = mutableStateOf("")
+    var city  = prefs.getString("city",null)!!
 
-    fun city(city : NAUserPersonal){
-        when(city){
-            is NAUserPersonal.GetCity -> getCity()
-        }
-    }
 
-    private fun getCity() {
-        cityState.value = prefs.getString("city", null)!!
-    }
 }

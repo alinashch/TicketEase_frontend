@@ -24,9 +24,8 @@ import com.example.ticketease.MVVM.Person.Buyer.Personal.ViewModelPersonal
 import com.example.ticketease.R
 @Composable
 fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hiltViewModel()) {
-    val city = viewModel.city!!
-    val state = viewModel.state
-
+    val city = viewModel.city
+    val buyer = viewModel.personal.value!!
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -82,12 +81,12 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                                         modifier = Modifier
                                             .offset((-80).dp, (-20).dp)
                                     ) {
-                                        Text(state.name + " ", fontSize = 20.sp, color = Color.Black)
-                                        Text(state.surname, fontSize = 20.sp, color = Color.Black)
+                                        Text(buyer.name + " ", fontSize = 20.sp, color = Color.Black)
+                                        Text(buyer.surname, fontSize = 20.sp, color = Color.Black)
 
                                     }
                                     Text(
-                                        state.mobile.toString(), fontSize = 20.sp, modifier = Modifier
+                                        buyer.mobile.toString(), fontSize = 20.sp, modifier = Modifier
                                             .offset((-80).dp, (-20).dp), color = Color.Black
                                     )
 
@@ -139,7 +138,9 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                         ) {
 
                             Button(
-                                onClick = {navController.navigate("HelloPage5")  },
+                                onClick = {
+                                    viewModel.del
+                                    navController.navigate("HelloPage5")  },
                                 modifier = Modifier
                                     .height(50.dp)
                                     .offset(0.dp, 45.dp)
@@ -193,13 +194,10 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                                         modifier = Modifier.padding(23.dp, 5.dp)
                                     )
                                 }
-                                Box(modifier = Modifier.size(30.dp, 30.dp)) {
+                                Box(modifier = Modifier.size(50.dp, 30.dp)) {
 
                                 }
 
-                                Box(modifier = Modifier.size(30.dp, 30.dp)) {
-
-                                }
                                 Column{
                                     Image(
                                         painterResource(id = R.drawable.dscds),
@@ -208,7 +206,6 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                                             .size(35.dp, 35.dp)
                                             .offset((-7).dp, (-7).dp)
                                             .clickable{
-                                                viewModel.createPreference()
                                                 navController.navigate("Preference")
                                             },
                                         contentScale = ContentScale.Crop
@@ -216,10 +213,10 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                                     Text(
                                         text = "Предпочтения",
                                         fontSize = 10.sp,
-                                        modifier = Modifier.offset(-25.dp, 0.dp)
+                                        modifier = Modifier.offset((-25).dp, 0.dp)
                                     )
                                 }
-                                Box(modifier = Modifier.size(30.dp, 30.dp)) {
+                                Box(modifier = Modifier.size(50.dp, 30.dp)) {
 
                                 }
                                 Column{
@@ -230,8 +227,7 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                                             .size(30.dp, 30.dp)
                                             .offset(-25.dp, -5.dp)
                                             .clickable() {
-                                                         // TODO get ticket
-                                                //navController.navigate(NavigationItem.Cart.route)
+                                                navController.navigate("CartPersonal")
                                             },
                                         contentScale = ContentScale.Crop
                                     )
@@ -241,7 +237,7 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                                         modifier = Modifier.offset(-28.dp, 5.dp)
                                     )
                                 }
-                                Box(modifier = Modifier.size(30.dp, 30.dp)) {
+                                Box(modifier = Modifier.size(50.dp, 30.dp)) {
 
                                 }
                                 Column{

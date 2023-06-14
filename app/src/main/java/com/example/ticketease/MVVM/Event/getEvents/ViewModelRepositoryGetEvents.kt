@@ -5,15 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ticketease.DataClasses.Catalog
+import com.example.ticketease.DataClasses.Person.BuyerWithoutPswd
 import com.example.ticketease.DataClasses.PlaceTime.PlaceDTO
 import com.example.ticketease.DataClasses.PlaceTime.PlaceType
+import com.google.gson.Gson
 import com.ticketEase.backend.DataClasses.Place.TypeOfPlace
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
@@ -22,17 +19,16 @@ import javax.inject.Inject
 
 class ViewModelRepositoryGetEvents @Inject constructor(
     private val repository : getEventsRepository,
-
     private val prefs : SharedPreferences
 ) : ViewModel() {
+    var city  = prefs.getString("city",null)!!
 
-    private val _list = MutableLiveData<List<PlaceDTO>>()
-    val list: LiveData<List<PlaceDTO>>
-        get() = _list
-
+    private val _listPlaces = MutableLiveData<List<PlaceDTO>>()
+    val listPlaces: LiveData<List<PlaceDTO>>
+        get() = _listPlaces
     init {
         viewModelScope.launch {
-            _list.value = repository.get()
+        _listPlaces.value = repository.get(PlaceType(TypeOfPlace.WITHOUT,city))
+            }
         }
-    }
 }
