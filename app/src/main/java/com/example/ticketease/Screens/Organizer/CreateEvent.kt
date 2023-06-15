@@ -31,12 +31,14 @@ import com.example.ticketease.Screens.EnterAppByer.checkSymbols
 fun CreateEvent(navController: NavHostController, viewModel: ViewModelEnterParam = hiltViewModel()) {
     val state = viewModel.state
     val context = LocalContext.current
-    val statePlace=viewModel.statePrice
+    val statePlace = viewModel.statePrice
 
-    Box(modifier = Modifier
-        .background(color = colorResource(R.color.white))
-        .fillMaxSize()
-    ){
+    Box(
+        modifier = Modifier
+            .background(color = colorResource(R.color.white))
+            .fillMaxWidth()
+    ) {
+
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Box(
                 modifier = Modifier
@@ -45,106 +47,162 @@ fun CreateEvent(navController: NavHostController, viewModel: ViewModelEnterParam
                     .height(150.dp),
                 contentAlignment = Alignment.TopCenter
             ) {
-                Column(  modifier = Modifier.padding(30.dp)) {
+                Column(modifier = Modifier.padding(30.dp)) {
                     Text("Создать мероприятие", fontSize = 28.sp, color = Color.Black)
 
                 }
             }
-            Column(modifier = Modifier.size(800.dp, 1200.dp).offset(0.dp, -50.dp),horizontalAlignment = Alignment.CenterHorizontally)
-            {
-                TextField(
-                    value = state.name,
-                    onValueChange = { viewModel.enter(EnterParamStateTextFields.Name(it)) },
-                    placeholder = { Text(text = "Название мероприятия") },
-                    modifier = Modifier
-                        .padding(5.dp).background(color=colorResource(R.color.greyfind)),
-                )
+            Box(
+                modifier = Modifier
+                    .background(color = colorResource(R.color.white))
+                    .fillMaxWidth(),
+                contentAlignment = Alignment.BottomCenter
 
-                TextField(
-                    value = statePlace.value,
-                    onValueChange = { viewModel.enter(EnterParamStateTextFields.Cost(it)) },
-                    placeholder = { Text(text = "Стоимость мерпориятия") },
-                    modifier = Modifier
-                        .padding(5.dp).background(color=colorResource(R.color.greyfind)),
-                )
-                TextField(
-                    value = state.type,
-                    onValueChange = { viewModel.enter(EnterParamStateTextFields.Type(it)) },
-                    placeholder = { Text(text = "Тип мероприятия") },
-                    modifier = Modifier
-                        .padding(5.dp).background(color=colorResource(R.color.greyfind)),
-                )
-                TextField(
-                    value = state.genre,
-                    onValueChange = { viewModel.enter(EnterParamStateTextFields.Genre(it)) },
-                    placeholder = { Text(text = "Жанр мероприятия") },
-                    modifier = Modifier
-                        .padding(5.dp).background(color=colorResource(R.color.greyfind)),
-                )
-                TextField(
-                    value = state.nameGroup.toString(),
-                    onValueChange = { viewModel.enter(EnterParamStateTextFields.NameGroup(it)) },
-                    placeholder = { Text(text = "Название коллектива") },
-                    modifier = Modifier
-                        .padding(5.dp).background(color=colorResource(R.color.greyfind)),
-                )
-                TextField(
-                    value = state.description.toString(),
-                    onValueChange = { viewModel.enter(EnterParamStateTextFields.Description(it)) },
-                    placeholder = { Text(text = "Описание") },
-                    modifier = Modifier
-                        .padding(5.dp).height(130.dp).background(color=colorResource(R.color.greyfind)),
-                )
+            ) {
 
-                Box() {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Button(
-                            onClick = {
-                                if (checkSymbols(state.name) and checkSymbols(state.genre!!) and checkSymbols(
-                                        state.type!!
-                                    )) {
-
-                                    viewModel.enter(EnterParamStateTextFields.Enter)
-                                    navController.navigate("PlaceSelector")
-                                }else{
-                                    Toast.makeText(context,"Error", Toast.LENGTH_LONG).show()
-
-                                }
+                Box(modifier = Modifier.padding(bottom = 70.dp).fillMaxHeight()) {
+                    Column(
+                        modifier = Modifier.size(800.dp, 1200.dp).offset(0.dp, -50.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    )
+                    {
+                        TextField(
+                            value = state.name,
+                            onValueChange = { viewModel.enter(EnterParamStateTextFields.Name(it)) },
+                            placeholder = {
+                                Text(
+                                    text = "Название мероприятия",
+                                    color = colorResource(R.color.black)
+                                )
                             },
                             modifier = Modifier
-                                .padding(top = 30.dp)
-                                .height(50.dp)
-                                .width(300.dp),
-                            shape = RoundedCornerShape(50),
-                            colors = ButtonDefaults.buttonColors(
-                                backgroundColor = colorResource(
-                                    R.color.backgroud
+                                .padding(5.dp).background(color = colorResource(R.color.greyfind)),
+                        )
+
+                        TextField(
+                            value = statePlace.value,
+                            onValueChange = { viewModel.enter(EnterParamStateTextFields.Cost(it)) },
+                            placeholder = {
+                                Text(
+                                    text = "Стоимость мерпориятия",
+                                    color = colorResource(R.color.black)
                                 )
-                            ),
-                            )
-                        {
+                            },
+                            modifier = Modifier
+                                .padding(5.dp).background(color = colorResource(R.color.greyfind)),
+                        )
+                        TextField(
+                            value = state.type,
+                            onValueChange = { viewModel.enter(EnterParamStateTextFields.Type(it)) },
+                            placeholder = {
+                                Text(
+                                    text = "Тип мероприятия",
+                                    color = colorResource(R.color.black)
+                                )
+                            },
+                            modifier = Modifier
+                                .padding(5.dp).background(color = colorResource(R.color.greyfind)),
+                        )
+                        TextField(
+                            value = state.genre,
+                            onValueChange = { viewModel.enter(EnterParamStateTextFields.Genre(it)) },
+                            placeholder = {
+                                Text(
+                                    text = "Жанр мероприятия",
+                                    color = colorResource(R.color.black)
+                                )
+                            },
+                            modifier = Modifier
+                                .padding(5.dp).background(color = colorResource(R.color.greyfind)),
+                        )
+                        TextField(
+                            value = state.nameGroup.toString(),
+                            onValueChange = { viewModel.enter(EnterParamStateTextFields.NameGroup(it)) },
+                            placeholder = {
+                                Text(
+                                    text = "Название коллектива",
+                                    color = colorResource(R.color.black)
+                                )
+                            },
+                            modifier = Modifier
+                                .padding(5.dp).background(color = colorResource(R.color.greyfind)),
+                        )
+                        TextField(
+                            value = state.description.toString(),
+                            onValueChange = {
+                                viewModel.enter(
+                                    EnterParamStateTextFields.Description(
+                                        it
+                                    )
+                                )
+                            },
+                            placeholder = {
+                                Text(
+                                    text = "Описание",
+                                    color = colorResource(R.color.black)
+                                )
+                            },
+                            modifier = Modifier
+                                .padding(5.dp).height(130.dp)
+                                .background(color = colorResource(R.color.greyfind)),
+                        )
 
-                            Column {
-                                Text("Создать", fontSize = 25.sp, color = Color.White)
+                        Box() {
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Button(
+                                    onClick = {
+                                        if (checkSymbols(state.name) and checkSymbols(state.genre!!) and checkSymbols(
+                                                state.type!!
+                                            )
+                                        ) {
 
+                                            viewModel.enter(EnterParamStateTextFields.Enter)
+                                            navController.navigate("PlaceSelector")
+                                        } else {
+                                            Toast.makeText(context, "Error", Toast.LENGTH_LONG)
+                                                .show()
+
+                                        }
+                                    },
+                                    modifier = Modifier
+                                        .padding(top = 30.dp)
+                                        .height(50.dp)
+                                        .width(300.dp),
+                                    shape = RoundedCornerShape(50),
+                                    colors = ButtonDefaults.buttonColors(
+                                        backgroundColor = colorResource(
+                                            R.color.backgroud
+                                        )
+                                    ),
+                                )
+                                {
+
+                                    Column {
+                                        Text("Создать", fontSize = 25.sp, color = Color.White)
+
+                                    }
+                                }
                             }
                         }
+                    }
+                }
 
                         Box(
                             modifier = Modifier
                                 .background(color = colorResource(R.color.white))
                                 .fillMaxWidth()
-                                .offset(0.dp, 50.dp)
                                 .height(70.dp), contentAlignment = Alignment.BottomCenter
                         ) {
                             Row() {
+                                Box(modifier = Modifier.size(35.dp, 30.dp)) {
+
+                                }
                                 Column() {
                                     Image(
-                                        painterResource(id = R.drawable.eventwhite),
+                                        painterResource(id = R.drawable.eventblack),
                                         contentDescription = "image",
                                         modifier = Modifier
                                             .size(40.dp, 40.dp)
-                                            .offset(105.dp, -5.dp)
                                             .clickable() {
                                                 navController.navigate("CreateEvent")
                                             },
@@ -153,19 +211,17 @@ fun CreateEvent(navController: NavHostController, viewModel: ViewModelEnterParam
                                     Text(
                                         text = "Создать мероприятие ",
                                         fontSize = 10.sp,
-                                        modifier = Modifier.padding(85.dp, 5.dp)
                                     )
                                 }
-                                Box(modifier = Modifier.size(15.dp, 30.dp)) {
+                                Box(modifier = Modifier.size(25.dp, 30.dp)) {
 
                                 }
                                 Column() {
                                     Image(
-                                        painterResource(id = R.drawable.avatarbl),
+                                        painterResource(id = R.drawable.avatar),
                                         contentDescription = "image",
                                         modifier = Modifier
                                             .size(35.dp, 35.dp)
-                                            .offset(-20.dp, -4.dp)
                                             .clickable() {
                                                 navController.navigate("PersonalOrg")
                                             },
@@ -174,23 +230,17 @@ fun CreateEvent(navController: NavHostController, viewModel: ViewModelEnterParam
                                     Text(
                                         text = "Личный кабинет",
                                         fontSize = 10.sp,
-                                        modifier = Modifier.offset(-40.dp, 10.dp)
                                     )
                                 }
-                                Box(modifier = Modifier.size(30.dp, 30.dp)) {
 
-                                }
-                                Box(modifier = Modifier.size(30.dp, 30.dp)) {
-
-                                }
 
                             }
                         }
-                    }
+
 
                 }
             }
-
         }
+
     }
-}
+

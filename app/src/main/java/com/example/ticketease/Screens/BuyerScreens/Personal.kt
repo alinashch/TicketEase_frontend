@@ -184,98 +184,86 @@ fun Personal(navController: NavHostController, viewModel: ViewModelPersonal = hi
                             }
                         }
                     }
-                        Box(
-                            modifier = Modifier
-                                .background(color = colorResource(R.color.white))
-                                .fillMaxWidth()
-                                .offset(0.dp, 113.dp)
-                                .height(70.dp), contentAlignment = Alignment.BottomCenter
-                        ) {
-                            Row{
-                                Column{
-                                    Image(
-                                        painterResource(id = R.drawable.barbl),
-                                        contentDescription = "image",
-                                        modifier = Modifier
-                                            .size(29.dp, 29.dp)
-                                            .offset(25.dp, (-5).dp)
-                                            .clickable{
-                                                navController.navigate("Catalog")
-                                            },
-                                        contentScale = ContentScale.Crop
-                                    )
-                                    Text(
-                                        text = "Каталог",
-                                        fontSize = 10.sp,
-                                        modifier = Modifier.padding(23.dp, 5.dp)
-                                    )
-                                }
-                                Box(modifier = Modifier.size(50.dp, 30.dp)) {
+                    Box(
+                        modifier = Modifier
+                            .background(color = colorResource(R.color.white))
+                            .fillMaxWidth()
+                            .height(70.dp), contentAlignment = Alignment.BottomCenter
+                    ) {
 
-                                }
+                        Row {
+                            Box(modifier = Modifier.size(20.dp, 10.dp)){
 
-                                Column{
-                                    Image(
-                                        painterResource(id = R.drawable.dscds),
-                                        contentDescription = "image",
-                                        modifier = Modifier
-                                            .size(35.dp, 35.dp)
-                                            .offset((-7).dp, (-7).dp)
-                                            .clickable{
-                                                navController.navigate("Preference")
-                                            },
-                                        contentScale = ContentScale.Crop
-                                    )
-                                    Text(
-                                        text = "Предпочтения",
-                                        fontSize = 10.sp,
-                                        modifier = Modifier.offset((-25).dp, 0.dp)
-                                    )
-                                }
-                                Box(modifier = Modifier.size(50.dp, 30.dp)) {
+                            }
+                            Column {
 
-                                }
-                                Column{
-                                    Image(
-                                        painterResource(id = R.drawable.shopcart),
-                                        contentDescription = "image",
-                                        modifier = Modifier
-                                            .size(30.dp, 30.dp)
-                                            .offset(-25.dp, -5.dp)
-                                            .clickable() {
-                                                navController.navigate("CartPersonal")
-                                            },
-                                        contentScale = ContentScale.Crop
-                                    )
-                                    Text(
-                                        text = "Корзина ",
-                                        fontSize = 10.sp,
-                                        modifier = Modifier.offset(-28.dp, 5.dp)
-                                    )
-                                }
-                                Box(modifier = Modifier.size(50.dp, 30.dp)) {
+                                Image(
+                                    painterResource(id = R.drawable.barbl),
+                                    contentDescription = "image",
+                                    modifier = Modifier
+                                        .size(29.dp, 29.dp)
+                                        .clickable {
+                                            navController.navigate("Catalog")
+                                        }
+                                    ,
+                                    contentScale = ContentScale.Crop
+                                )
+                                Text(text = "Каталог", fontSize = 10.sp, modifier = Modifier.padding(0.dp, 5.dp))
+                            }
+                            Box(modifier = Modifier.size(50.dp, 30.dp)){
 
-                                }
-                                Column{
-                                    Image(
-                                        painterResource(id = R.drawable.avatarbl),
-                                        contentDescription = "image",
-                                        modifier = Modifier
-                                            .size(31.dp, 31.dp)
-                                            .offset(-15.dp, -5.dp)
-                                            .clickable() {
-                                                navController.navigate("Personal")
-                                            },
-                                        contentScale = ContentScale.Crop
-                                    )
-                                    Text(
-                                        text = "Личный кабинет ",
-                                        fontSize = 10.sp,
-                                        modifier = Modifier.offset(-20.dp, -3.dp)
-                                    )
-                                }
+                            }
+
+                            Column {
+                                Image(
+                                    painterResource(id = R.drawable.dscds),
+                                    contentDescription = "image",
+                                    modifier = Modifier
+                                        .size(35.dp, 35.dp)
+                                        .clickable {
+                                            navController.navigate("Preference")
+                                        }
+                                    ,
+                                    contentScale = ContentScale.Crop
+                                )
+                                Text(text = "Предпочтения", fontSize = 10.sp)
+                            }
+                            Box(modifier = Modifier.size(50.dp, 30.dp)){
+
+                            }
+                            Column {
+                                Image(
+                                    painterResource(id = R.drawable.shopcart),
+                                    contentDescription = "image",
+                                    modifier = Modifier
+                                        .size(30.dp, 30.dp)
+                                        .clickable {
+                                            navController.navigate("CartPersonal")
+                                        }
+                                    ,
+                                    contentScale = ContentScale.Crop
+                                )
+                                Text(text = "Корзина", fontSize = 10.sp)
+                            }
+                            Box(modifier = Modifier.size(50.dp, 30.dp)){
+
+                            }
+                            Column {
+                                Image(
+                                    painterResource(id = R.drawable.avatarbl),
+                                    contentDescription = "image",
+                                    modifier = Modifier
+                                        .size(31.dp, 31.dp)
+                                        .clickable {
+                                            navController.navigate("Personal")
+                                        }
+                                    ,
+                                    contentScale = ContentScale.Crop
+                                )
+                                Text(text = "Личный кабинет", fontSize = 10.sp)
                             }
                         }
+                    }
                     }
                 }
             }

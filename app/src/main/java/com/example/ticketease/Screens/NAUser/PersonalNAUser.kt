@@ -124,26 +124,27 @@ fun PersonalNAUSer(navController: NavHostController, viewModel: ViewModelNAUserP
                                 .fillMaxWidth()
                                 .height(70.dp), contentAlignment = Alignment.BottomCenter
                         ) {
+
                             Row {
+                                Box(modifier = Modifier.size(20.dp, 10.dp)){
+
+                                }
                                 Column {
+
                                     Image(
                                         painterResource(id = R.drawable.barbl),
                                         contentDescription = "image",
                                         modifier = Modifier
                                             .size(29.dp, 29.dp)
-                                            .offset(25.dp, (-5).dp)
                                             .clickable {
                                                 navController.navigate("CatalogNAUser")
-                                            },
+                                            }
+                                        ,
                                         contentScale = ContentScale.Crop
                                     )
-                                    Text(
-                                        text = "Каталог",
-                                        fontSize = 10.sp,
-                                        modifier = Modifier.padding(23.dp, 5.dp)
-                                    )
+                                    Text(text = "Каталог", fontSize = 10.sp, modifier = Modifier.padding(0.dp, 5.dp))
                                 }
-                                Box(modifier = Modifier.size(50.dp, 30.dp)) {
+                                Box(modifier = Modifier.size(50.dp, 30.dp)){
 
                                 }
 
@@ -153,19 +154,15 @@ fun PersonalNAUSer(navController: NavHostController, viewModel: ViewModelNAUserP
                                         contentDescription = "image",
                                         modifier = Modifier
                                             .size(35.dp, 35.dp)
-                                            .offset((-7).dp, (-7).dp)
                                             .clickable {
                                                 navController.navigate("PreferenceNAUser")
-                                            },
+                                            }
+                                        ,
                                         contentScale = ContentScale.Crop
                                     )
-                                    Text(
-                                        text = "Предпочтения",
-                                        fontSize = 10.sp,
-                                        modifier = Modifier.offset((-25).dp, 0.dp)
-                                    )
+                                    Text(text = "Предпочтения", fontSize = 10.sp)
                                 }
-                                Box(modifier = Modifier.size(50.dp, 30.dp)) {
+                                Box(modifier = Modifier.size(50.dp, 30.dp)){
 
                                 }
                                 Column {
@@ -174,19 +171,15 @@ fun PersonalNAUSer(navController: NavHostController, viewModel: ViewModelNAUserP
                                         contentDescription = "image",
                                         modifier = Modifier
                                             .size(30.dp, 30.dp)
-                                            .offset((-25).dp, (-5).dp)
                                             .clickable {
                                                 navController.navigate("CartNAUser")
-                                            },
+                                            }
+                                        ,
                                         contentScale = ContentScale.Crop
                                     )
-                                    Text(
-                                        text = "Корзина",
-                                        fontSize = 10.sp,
-                                        modifier = Modifier.offset((-28).dp, 5.dp)
-                                    )
+                                    Text(text = "Корзина", fontSize = 10.sp)
                                 }
-                                Box(modifier = Modifier.size(50.dp, 30.dp)) {
+                                Box(modifier = Modifier.size(50.dp, 30.dp)){
 
                                 }
                                 Column {
@@ -195,17 +188,13 @@ fun PersonalNAUSer(navController: NavHostController, viewModel: ViewModelNAUserP
                                         contentDescription = "image",
                                         modifier = Modifier
                                             .size(31.dp, 31.dp)
-                                            .offset((-15).dp, (-5).dp)
                                             .clickable {
                                                 navController.navigate("PersonalNAUser")
-                                            },
+                                            }
+                                        ,
                                         contentScale = ContentScale.Crop
                                     )
-                                    Text(
-                                        text = "Личный кабинет",
-                                        fontSize = 10.sp,
-                                        modifier = Modifier.offset((-20).dp, (-3).dp)
-                                    )
+                                    Text(text = "Личный кабинет", fontSize = 10.sp)
                                 }
                             }
                         }
